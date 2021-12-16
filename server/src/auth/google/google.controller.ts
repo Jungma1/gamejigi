@@ -1,30 +1,30 @@
 import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { GithubGuard } from './guard/github.guard';
+import { GoogleGuard } from './guard/google.guard';
 import { JwtAuthService } from '../jwt-auth/jwt-auth.service';
 import { JwtAuthGuard } from '../jwt-auth/guard/jwt-auth.guard';
 
 @Controller('api/auth')
-export class GithubController {
+export class GoogleController {
   constructor(private readonly jwtAuthService: JwtAuthService) {}
 
-  @Get('github')
-  @UseGuards(GithubGuard)
-  async githubAuth() {
+  @Get('google')
+  @UseGuards(GoogleGuard)
+  async googleAuth() {
     // callback url
   }
 
-  @Get('github/callback')
-  @UseGuards(GithubGuard)
-  async githubAuthCallback(@Req() req: Request, @Res() res: Response) {
-    const accessToken = await this.jwtAuthService.getAccessToken(req.user);
+  @Get('google/callback')
+  @UseGuards(GoogleGuard)
+  async googleAuthCallback(@Req() req: Request, @Res() res: Response) {
+    const { accessToken } = await this.jwtAuthService.register(req.user);
 
     res.cookie('accessToken', accessToken);
 
     return res.send(req.user);
   }
 
-  @Get('/test')
+  @Get('/profile')
   @UseGuards(JwtAuthGuard)
   async test(@Req() req: Request) {
     return req.user;

@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { GithubModule } from './github/github.module';
+import { GoogleModule } from './google/google.module';
 
 @Module({
-  imports: [GithubModule],
+  imports: [GoogleModule],
   exports: [AuthModule],
 })
 export class AuthModule {}
