@@ -1,11 +1,11 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('users')
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @PrimaryColumn()
+  @Column()
   email: string;
 
   @Column()
@@ -15,5 +15,5 @@ export class User {
   provider: string;
 
   @Column()
-  providerId: string;
+  provider_id: string;
 }
