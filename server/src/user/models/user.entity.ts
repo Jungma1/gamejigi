@@ -1,22 +1,30 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id!: string;
 
   @Column()
-  email: string;
+  email!: string;
 
   @Column()
-  username: string;
+  username!: string;
 
   @Column()
-  provider: string;
+  provider!: string;
 
-  @Column()
-  provider_id: string;
+  @Column('timestamptz')
+  @CreateDateColumn()
+  created_at!: Date;
 
-  @Column({ nullable: true })
-  hashed_refresh_token: string;
+  @Column('timestamptz')
+  @UpdateDateColumn()
+  updated_at!: Date;
 }

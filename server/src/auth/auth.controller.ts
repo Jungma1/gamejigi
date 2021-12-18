@@ -1,11 +1,11 @@
 import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
+import { GoogleGuard } from './google/guard/google.guard';
+import { JwtAuthService } from './jwt-auth/jwt-auth.service';
 import { Request, Response } from 'express';
-import { GoogleGuard } from './guard/google.guard';
-import { JwtAuthService } from '../jwt-auth/jwt-auth.service';
 import { UserDto } from 'src/user/dto/user.dto';
 
 @Controller('api/auth')
-export class GoogleController {
+export class AuthController {
   constructor(private readonly jwtAuthService: JwtAuthService) {}
 
   @Get('google')

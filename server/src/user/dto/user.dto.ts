@@ -9,7 +9,4 @@ export class UserDto {
 
   @IsString()
   provider: string;
-
-  @IsString()
-  provider_id: string;
 }
