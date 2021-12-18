@@ -13,7 +13,7 @@ export class JwtAuthService {
   async register(user: UserDto) {
     const exist = await this.userService.findOneByProviderAndEmail(user);
 
-    // 사용자가 존재하는 경우
+    // 사용자가 있을 경우
     if (exist) {
       const payload = {
         id: exist.id,
@@ -24,6 +24,8 @@ export class JwtAuthService {
         { id: exist.id, sub: 'refresh_token' },
         { expiresIn: '14d' },
       );
+
+      await this.userService.setHashedRefreshToken(exist.id, refreshToken);
 
       return {
         accessToken,
@@ -42,6 +44,8 @@ export class JwtAuthService {
       { id: saveUser.id, sub: 'refresh_token' },
       { expiresIn: '14d' },
     );
+
+    await this.userService.setHashedRefreshToken(saveUser.id, refreshToken);
 
     return {
       accessToken,

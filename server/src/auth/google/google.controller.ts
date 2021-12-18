@@ -2,7 +2,6 @@ import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { GoogleGuard } from './guard/google.guard';
 import { JwtAuthService } from '../jwt-auth/jwt-auth.service';
-import { JwtAuthGuard } from '../jwt-auth/guard/jwt-auth.guard';
 import { UserDto } from 'src/user/dto/user.dto';
 
 @Controller('api/auth')
@@ -33,11 +32,5 @@ export class GoogleController {
     });
 
     return res.send(req.user);
-  }
-
-  @Get('/profile')
-  @UseGuards(JwtAuthGuard)
-  async test(@Req() req: Request) {
-    return req.user;
   }
 }

@@ -16,4 +16,7 @@ export class User {
 
   @Column()
   provider_id: string;
+
+  @Column({ nullable: true })
+  hashed_refresh_token: string;
 }
