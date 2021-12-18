@@ -19,7 +19,10 @@ export class GoogleController {
   async googleAuthCallback(@Req() req: Request, @Res() res: Response) {
     const { accessToken } = await this.jwtAuthService.register(req.user);
 
-    res.cookie('accessToken', accessToken);
+    res.cookie('accessToken', accessToken, {
+      httpOnly: true,
+      maxAge: 60 * 60 * 1000 * 2,
+    });
 
     return res.send(req.user);
   }
