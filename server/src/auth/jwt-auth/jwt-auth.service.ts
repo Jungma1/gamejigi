@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { UserDto } from 'src/user/dto/user.dto';
 import { UserService } from 'src/user/user.service';
@@ -8,6 +9,7 @@ export class JwtAuthService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
+    private readonly configService: ConfigService,
   ) {}
 
   async register(user: UserDto) {
@@ -22,7 +24,9 @@ export class JwtAuthService {
       const accessToken = this.jwtService.sign(payload);
       const refreshToken = this.jwtService.sign(
         { id: exist.id, sub: 'refresh_token' },
-        { expiresIn: '14d' },
+        {
+          expiresIn: this.configService.get<string>('REFRESH_TOKEN_EXPIRES_IN'),
+        },
       );
 
       await this.userService.setHashedRefreshToken(exist.id, refreshToken);
@@ -42,7 +46,9 @@ export class JwtAuthService {
     const accessToken = this.jwtService.sign(payload);
     const refreshToken = this.jwtService.sign(
       { id: saveUser.id, sub: 'refresh_token' },
-      { expiresIn: '14d' },
+      {
+        expiresIn: this.configService.get<string>('REFRESH_TOKEN_EXPIRES_IN'),
+      },
     );
 
     await this.userService.setHashedRefreshToken(saveUser.id, refreshToken);
