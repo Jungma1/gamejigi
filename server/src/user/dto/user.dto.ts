@@ -9,4 +9,7 @@ export class UserDto {
 
   @IsString()
   provider: string;
+
+  @IsString()
+  role: string;
 }

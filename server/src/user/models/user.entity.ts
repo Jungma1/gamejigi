@@ -20,6 +20,9 @@ export class User {
   @Column()
   provider!: string;
 
+  @Column()
+  role!: string;
+
   @Column('timestamptz')
   @CreateDateColumn()
   created_at!: Date;
