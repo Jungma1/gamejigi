@@ -31,6 +31,22 @@ export class AuthController {
       maxAge: 60 * 60 * 1000 * 24 * 14,
     });
 
-    return res.send(req.user);
+    return res.send();
+  }
+
+  @Get('test')
+  async getTestToken(@Res() res: Response) {
+    const { accessToken, refreshToken } = await this.jwtAuthService.testToken();
+
+    res.cookie('accessToken', accessToken, {
+      httpOnly: true,
+      maxAge: 60 * 60 * 1000,
+    });
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      maxAge: 60 * 60 * 1000 * 24 * 14,
+    });
+
+    return res.send();
   }
 }

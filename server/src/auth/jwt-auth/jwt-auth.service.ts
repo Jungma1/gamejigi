@@ -58,4 +58,23 @@ export class JwtAuthService {
       refreshToken,
     };
   }
+
+  async testToken() {
+    const accessToken = this.jwtService.sign({
+      id: 'c979350a-f8f8-4345-ab2a-11332cb98b3f',
+    });
+    const refreshToken = this.jwtService.sign(
+      {
+        id: 'c979350a-f8f8-4345-ab2a-11332cb98b3f',
+      },
+      {
+        expiresIn: this.configService.get<string>('REFRESH_TOKEN_EXPIRES_IN'),
+      },
+    );
+
+    return {
+      accessToken,
+      refreshToken,
+    };
+  }
 }
