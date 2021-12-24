@@ -21,6 +21,9 @@ export class User {
   provider!: string;
 
   @Column()
+  social_id!: string;
+
+  @Column()
   role!: string;
 
   @Column('timestamptz')

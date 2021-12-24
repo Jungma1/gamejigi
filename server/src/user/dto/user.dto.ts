@@ -11,5 +11,8 @@ export class UserDto {
   provider: string;
 
   @IsString()
+  social_id: string;
+
+  @IsString()
   role: string;
 }

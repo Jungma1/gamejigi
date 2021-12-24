@@ -31,10 +31,14 @@ export class UserService {
     return this.userRepository.find();
   }
 
-  async findOneByProviderAndEmail(user: UserDto) {
+  async findFirst() {
+    return this.userRepository.findOne();
+  }
+
+  async findOneByProviderAndSocialId(user: UserDto) {
     return this.userRepository.findOne({
       provider: user.provider,
-      email: user.email,
+      social_id: user.social_id,
     });
   }
 

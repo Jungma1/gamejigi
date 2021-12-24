@@ -13,7 +13,7 @@ export class JwtAuthService {
   ) {}
 
   async register(user: UserDto) {
-    const exist = await this.userService.findOneByProviderAndEmail(user);
+    const exist = await this.userService.findOneByProviderAndSocialId(user);
 
     // 사용자가 있을 경우
     if (exist) {
@@ -46,9 +46,7 @@ export class JwtAuthService {
     const accessToken = this.jwtService.sign(payload);
     const refreshToken = this.jwtService.sign(
       { id: saveUser.id, sub: 'refresh_token' },
-      {
-        expiresIn: this.configService.get<string>('REFRESH_TOKEN_EXPIRES_IN'),
-      },
+      { expiresIn: this.configService.get<string>('REFRESH_TOKEN_EXPIRES_IN') },
     );
 
     await this.userService.setHashedRefreshToken(saveUser.id, refreshToken);
@@ -60,16 +58,11 @@ export class JwtAuthService {
   }
 
   async testToken() {
-    const accessToken = this.jwtService.sign({
-      id: 'c979350a-f8f8-4345-ab2a-11332cb98b3f',
-    });
+    const user = await this.userService.findFirst();
+    const accessToken = this.jwtService.sign({ id: user.id });
     const refreshToken = this.jwtService.sign(
-      {
-        id: 'c979350a-f8f8-4345-ab2a-11332cb98b3f',
-      },
-      {
-        expiresIn: this.configService.get<string>('REFRESH_TOKEN_EXPIRES_IN'),
-      },
+      { id: user.id },
+      { expiresIn: this.configService.get<string>('REFRESH_TOKEN_EXPIRES_IN') },
     );
 
     return {
