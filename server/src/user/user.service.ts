@@ -42,13 +42,20 @@ export class UserService {
     });
   }
 
-  async setHashedRefreshToken(id: string, refreshToken: string) {
+  async setHashedRefreshToken(userId: string, refreshToken: string) {
     const salt = await bcrypt.genSalt();
     const hashedRefreshToken = await bcrypt.hash(refreshToken, salt);
 
     return this.userAuthTokenRepository.update(
-      { user_id: id },
+      { user_id: userId },
       { hashed_refresh_token: hashedRefreshToken },
+    );
+  }
+
+  async removeHashedRefreshToken(userId: string) {
+    return this.userAuthTokenRepository.update(
+      { user_id: userId },
+      { hashed_refresh_token: null },
     );
   }
 }
