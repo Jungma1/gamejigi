@@ -42,6 +42,13 @@ export class UserService {
     });
   }
 
+  async isRefreshTokenMatched(
+    refreshToken: string,
+    hashedRefreshToken: string,
+  ) {
+    return bcrypt.compare(refreshToken, hashedRefreshToken);
+  }
+
   async setHashedRefreshToken(userId: string, refreshToken: string) {
     const salt = await bcrypt.genSalt();
     const hashedRefreshToken = await bcrypt.hash(refreshToken, salt);
@@ -50,6 +57,13 @@ export class UserService {
       { user_id: userId },
       { hashed_refresh_token: hashedRefreshToken },
     );
+  }
+
+  async getHashedRefreshToken(userId: string) {
+    const { hashed_refresh_token: hashedRefreshToken } =
+      await this.userAuthTokenRepository.findOne({ user_id: userId });
+
+    return hashedRefreshToken;
   }
 
   async removeHashedRefreshToken(userId: string) {

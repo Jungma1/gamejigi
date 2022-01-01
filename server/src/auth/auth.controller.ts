@@ -22,13 +22,13 @@ export class AuthController {
       requestUser,
     );
 
-    res.cookie('accessToken', accessToken, {
+    res.cookie('access_token', accessToken, {
       httpOnly: true,
       maxAge: 60 * 60 * 1000,
     });
-    res.cookie('refreshToken', refreshToken, {
+    res.cookie('refresh_token', refreshToken, {
       httpOnly: true,
-      maxAge: 60 * 60 * 1000 * 24 * 14,
+      maxAge: 60 * 60 * 1000 * 24 * 30,
     });
 
     return res.send();
@@ -38,13 +38,13 @@ export class AuthController {
   async getTestToken(@Res() res: Response) {
     const { accessToken, refreshToken } = await this.jwtAuthService.testToken();
 
-    res.cookie('accessToken', accessToken, {
+    res.cookie('access_token', accessToken, {
       httpOnly: true,
       maxAge: 60 * 60 * 1000,
     });
-    res.cookie('refreshToken', refreshToken, {
+    res.cookie('refresh_token', refreshToken, {
       httpOnly: true,
-      maxAge: 60 * 60 * 1000 * 24 * 14,
+      maxAge: 60 * 60 * 1000 * 24 * 30,
     });
 
     return res.send();

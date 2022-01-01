@@ -57,6 +57,24 @@ export class JwtAuthService {
     };
   }
 
+  async verifyToken(token: string) {
+    return this.jwtService.verify(token);
+  }
+
+  async decodedToken(token: string) {
+    return this.jwtService.decode(token);
+  }
+
+  async getFreshAccessToken(userId: string) {
+    const payload = {
+      id: userId,
+      sub: 'access_token',
+    };
+    const accessToken = this.jwtService.sign(payload);
+
+    return accessToken;
+  }
+
   async testToken() {
     const user = await this.userService.findFirst();
     const accessToken = this.jwtService.sign({ id: user.id });
@@ -64,6 +82,7 @@ export class JwtAuthService {
       { id: user.id },
       { expiresIn: this.configService.get<string>('REFRESH_TOKEN_EXPIRES_IN') },
     );
+    await this.userService.setHashedRefreshToken(user.id, refreshToken);
 
     return {
       accessToken,
