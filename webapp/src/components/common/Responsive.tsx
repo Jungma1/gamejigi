@@ -14,7 +14,7 @@ export const ResponsiveTemplate = styled.div`
   display: flex;
   align-items: center;
   width: 1440px;
-  height: 100vh;
+  min-height: 100vh;
   margin-left: auto;
   margin-right: auto;
   background: ${palette.gray1};

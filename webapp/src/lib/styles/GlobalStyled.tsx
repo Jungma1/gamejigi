@@ -10,7 +10,7 @@ export const GlobalStyled = createGlobalStyle`
   }
 
   body {
-    background: linear-gradient(105.92deg, #262837 19.76%, #6B5E78 35.98%, #262837 57.83%, #342D3C 77.22%, #262837 87.44%);
+    background: linear-gradient(90.06deg, #262837 -2.23%, #6B5E78 23.62%, #262837 58.48%, #342D3C 89.39%, #262837 105.7%);
   }
 
   a, a:link, a:visited, a:hover, a:focus {
