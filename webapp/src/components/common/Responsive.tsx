@@ -18,6 +18,8 @@ export const ResponsiveTemplate = styled.div`
   margin-left: auto;
   margin-right: auto;
   background: ${palette.gray1};
+  border-left: 2px solid rgba(255, 255, 255, 0.5);
+  border-right: 2px solid rgba(255, 255, 255, 0.5);
 
   ${media.xlarge} {
     width: 1024px;

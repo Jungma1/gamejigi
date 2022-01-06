@@ -34,7 +34,6 @@ const Block = styled.div`
   justify-content: space-between;
   align-items: center;
   background: ${palette.black};
-  border-left: 2px solid rgba(255, 255, 255, 0.5);
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   min-height: 100vh;
@@ -47,7 +46,7 @@ const StyledTop = styled.div`
   margin-top: 2rem;
 
   div {
-    font-size: 0.725rem;
+    font-size: 0.75rem;
     font-weight: bold;
     margin-top: 1rem;
   }
@@ -71,6 +70,10 @@ const StyledMiddle = styled.div`
 
 const StyledBottom = styled.div`
   margin-bottom: 2rem;
+
+  svg {
+    cursor: pointer;
+  }
 `;
 
 export default LeftSidebar;
