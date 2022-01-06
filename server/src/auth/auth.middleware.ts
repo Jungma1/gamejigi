@@ -13,6 +13,7 @@ export class AuthMiddleware implements NestMiddleware {
   async use(req: Request, res: Response, next: NextFunction) {
     const accessToken = req.cookies['access_token'];
     const refreshToken = req.cookies['refresh_token'];
+    console.log('미들웨어');
 
     // accessToken OR refreshToken 이 없는 경우
     if (!accessToken || !refreshToken) return next();
