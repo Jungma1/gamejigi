@@ -1,11 +1,13 @@
 import React from 'react';
-import { useAppSelector } from '../../app/hooks';
+import { useAuth } from '../../hooks/useAuth';
 
 function AuthForm() {
-  const value = useAppSelector(state => state.auth.value);
+  const { onClick, user } = useAuth();
+
   return (
     <div>
-      <strong>{value}</strong>
+      <div>{user} 임</div>
+      <button onClick={onClick}>로그인 해보실?</button>
     </div>
   );
 }
