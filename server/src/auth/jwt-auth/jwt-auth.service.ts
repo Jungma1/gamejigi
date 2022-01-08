@@ -32,7 +32,6 @@ export class JwtAuthService {
       await this.userService.setHashedRefreshToken(exist.id, refreshToken);
 
       return {
-        user: exist,
         accessToken,
         refreshToken,
       };
@@ -53,7 +52,6 @@ export class JwtAuthService {
     await this.userService.setHashedRefreshToken(saveUser.id, refreshToken);
 
     return {
-      user: saveUser,
       accessToken,
       refreshToken,
     };

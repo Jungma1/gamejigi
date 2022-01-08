@@ -18,8 +18,9 @@ export class AuthController {
   @UseGuards(GoogleGuard)
   async googleAuthCallback(@Req() req: Request, @Res() res: Response) {
     const requestUser = req.user as UserDto;
-    const { accessToken, refreshToken, user } =
-      await this.jwtAuthService.register(requestUser);
+    const { accessToken, refreshToken } = await this.jwtAuthService.register(
+      requestUser,
+    );
 
     res.cookie('access_token', accessToken, {
       httpOnly: true,
