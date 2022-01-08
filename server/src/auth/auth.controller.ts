@@ -3,6 +3,8 @@ import { GoogleGuard } from './google/guard/google.guard';
 import { JwtAuthService } from './jwt-auth/jwt-auth.service';
 import { Request, Response } from 'express';
 import { UserDto } from 'src/user/dto/user.dto';
+import { JwtAuthGuard } from './jwt-auth/guard/jwt-auth.guard';
+import { User } from 'src/user/models/user.entity';
 
 @Controller('api/auth')
 export class AuthController {
@@ -32,6 +34,18 @@ export class AuthController {
     });
 
     return res.redirect('http://localhost:3000');
+  }
+
+  @Get('check')
+  @UseGuards(JwtAuthGuard)
+  async checkUser(@Req() req: Request, @Res() res: Response) {
+    const { email, username, role } = req.user as User;
+
+    return res.status(200).json({
+      email,
+      username,
+      role,
+    });
   }
 
   @Get('test')

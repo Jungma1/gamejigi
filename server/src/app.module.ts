@@ -21,6 +21,9 @@ import { JwtAuthModule } from './auth/jwt-auth/jwt-auth.module';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).exclude('/api/auth/(.*)').forRoutes('api');
+    consumer
+      .apply(AuthMiddleware)
+      .exclude('/api/auth/google/(.*)')
+      .forRoutes('api');
   }
 }
