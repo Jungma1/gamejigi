@@ -18,9 +18,8 @@ export class AuthController {
   @UseGuards(GoogleGuard)
   async googleAuthCallback(@Req() req: Request, @Res() res: Response) {
     const requestUser = req.user as UserDto;
-    const { accessToken, refreshToken } = await this.jwtAuthService.register(
-      requestUser,
-    );
+    const { accessToken, refreshToken, user } =
+      await this.jwtAuthService.register(requestUser);
 
     res.cookie('access_token', accessToken, {
       httpOnly: true,
@@ -31,7 +30,11 @@ export class AuthController {
       maxAge: 60 * 60 * 1000 * 24 * 30,
     });
 
-    return res.send();
+    return res.status(200).json({
+      email: user.email,
+      username: user.username,
+      role: user.role,
+    });
   }
 
   @Get('test')
