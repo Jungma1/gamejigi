@@ -30,11 +30,7 @@ export class AuthController {
       maxAge: 60 * 60 * 1000 * 24 * 30,
     });
 
-    return res.status(200).json({
-      email: user.email,
-      username: user.username,
-      role: user.role,
-    });
+    return res.redirect('http://localhost:3000');
   }
 
   @Get('test')
