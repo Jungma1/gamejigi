@@ -1,16 +1,10 @@
-import axios from 'axios';
+import client from '../../lib/api/client';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { setUser, setUserError, setUserSucceed } from './authSlice';
 
-async function authApi() {
-  return await axios.get('http://localhost:4000/api/auth/check', {
-    withCredentials: true,
-  });
-}
-
 export function* loginSaga(): Generator {
   try {
-    const result: any = yield call(authApi);
+    const result: any = yield call(client.get, '/api/auth/check');
     yield put(setUserSucceed(result.data));
   } catch (err) {
     yield put(setUserError(err));

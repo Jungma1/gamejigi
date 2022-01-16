@@ -5,10 +5,14 @@ import { Request, Response } from 'express';
 import { UserDto } from 'src/user/dto/user.dto';
 import { JwtAuthGuard } from './jwt-auth/guard/jwt-auth.guard';
 import { User } from 'src/user/models/user.entity';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('api/auth')
 export class AuthController {
-  constructor(private readonly jwtAuthService: JwtAuthService) {}
+  constructor(
+    private readonly jwtAuthService: JwtAuthService,
+    private readonly configService: ConfigService,
+  ) {}
 
   @Get('google')
   @UseGuards(GoogleGuard)
@@ -33,7 +37,7 @@ export class AuthController {
       maxAge: 60 * 60 * 1000 * 24 * 30,
     });
 
-    return res.redirect('http://localhost:3000');
+    return res.redirect(this.configService.get('HOST'));
   }
 
   @Get('check')

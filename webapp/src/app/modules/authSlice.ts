@@ -33,6 +33,7 @@ export const authSlice = createSlice({
       state.isLoading = false;
     },
     setUserError: (state, action) => {
+      state.user = null;
       state.isError = action.payload;
       state.isLoading = false;
     },
