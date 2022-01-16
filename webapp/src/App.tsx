@@ -6,12 +6,12 @@ import HomePage from './pages/home/HomePage';
 
 function App() {
   useAuthEffect();
-  
+
   return (
     <>
       <GlobalStyled />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path='/' element={<HomePage />} />
       </Routes>
     </>
   );

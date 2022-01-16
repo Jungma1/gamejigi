@@ -2,7 +2,7 @@ import client from '../../lib/api/client';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { setUser, setUserError, setUserSucceed } from './authSlice';
 
-export function* loginSaga(): Generator {
+export function* checkSaga(): Generator {
   try {
     const result: any = yield call(client.get, '/api/auth/check');
     yield put(setUserSucceed(result.data));
@@ -12,5 +12,5 @@ export function* loginSaga(): Generator {
 }
 
 export default function* authSaga() {
-  yield takeLatest(setUser, loginSaga);
+  yield takeLatest(setUser, checkSaga);
 }

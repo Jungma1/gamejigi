@@ -43,12 +43,11 @@ export class AuthController {
   @Get('check')
   @UseGuards(JwtAuthGuard)
   async checkUser(@Req() req: Request, @Res() res: Response) {
-    const { email, username, role } = req.user as User;
+    const { email, username } = req.user as User;
 
     return res.status(200).json({
       email,
       username,
-      role,
     });
   }
 
