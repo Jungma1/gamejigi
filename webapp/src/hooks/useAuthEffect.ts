@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { useAppDispatch } from '../app/hooks';
 import { setUser } from '../app/modules/authSlice';
+import { useAuth } from './useAuth';
 
 export default function useAuthEffect() {
+  const { user } = useAuth();
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector(state => state.auth);
 
   useEffect(() => {
     if (!user) {
