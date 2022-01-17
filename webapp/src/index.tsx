@@ -6,6 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
+import { getStorageItem, STORAGE_KEY } from './lib/storage';
+import { setUser } from './app/modules/authSlice';
+
+const loadUser = () => {
+  const user = getStorageItem(STORAGE_KEY);
+  
+  if (!user) return;
+  store.dispatch(setUser(user));
+};
+
+loadUser();
 
 ReactDOM.render(
   <React.StrictMode>
