@@ -18,8 +18,8 @@ function AuthForm() {
           <CancelBlock>
             <CancelIcon onClick={handleChangeModalVisible} />
           </CancelBlock>
-          <strong>환영합니다!</strong>
-          <strong>원하는 로그인 방식을 선택하세요!</strong>
+          <div>환영합니다!</div>
+          <div>원하는 로그인 방식을 선택하세요!</div>
           <AuthSocialButtonGroup />
         </BoxTemplate>
       </Wrapper>
@@ -53,8 +53,13 @@ const BoxTemplate = styled.div`
   height: 200px;
   border-radius: 1rem;
   padding: 1rem;
+  font-weight: bold;
 
-  strong {
+  div {
+    :nth-child(2) {
+      font-size: 1.125rem;
+      margin-bottom: 0.125rem;
+    }
     :nth-child(3) {
       margin-bottom: 2rem;
     }
