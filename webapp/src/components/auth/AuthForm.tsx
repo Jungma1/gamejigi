@@ -58,7 +58,7 @@ const BoxTemplate = styled.div`
   div {
     :nth-child(2) {
       font-size: 1.125rem;
-      margin-bottom: 0.125rem;
+      margin-bottom: 0.25rem;
     }
     :nth-child(3) {
       margin-bottom: 2rem;
@@ -68,7 +68,8 @@ const BoxTemplate = styled.div`
 
 const CancelBlock = styled.div`
   align-self: flex-end;
-  margin-bottom: 1.625rem;
+  justify-self: flex-start;
+  margin-bottom: 1.5rem;
   cursor: pointer;
 `;
 

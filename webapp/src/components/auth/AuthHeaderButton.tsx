@@ -4,11 +4,19 @@ import { useAuth } from '../../hooks/useAuth';
 import palette from '../../lib/styles/palette';
 
 function AuthHeaderButton() {
-  const { handleChangeModalVisible } = useAuth();
+  const { user, handleChangeModalVisible } = useAuth();
+
+  if (!user) {
+    return (
+      <AuthHeaderButtonBlock onClick={handleChangeModalVisible}>
+        <span>로그인</span>
+      </AuthHeaderButtonBlock>
+    );
+  }
 
   return (
-    <AuthHeaderButtonBlock onClick={handleChangeModalVisible}>
-      <span>로그인</span>
+    <AuthHeaderButtonBlock>
+      <span>내정보</span>
     </AuthHeaderButtonBlock>
   );
 }
@@ -30,7 +38,7 @@ const AuthHeaderButtonBlock = styled.div`
   }
 
   :hover {
-    background: ${palette.gray2}
+    background: ${palette.gray2};
   }
 `;
 
