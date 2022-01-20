@@ -8,6 +8,7 @@ import {
   PostIcon,
   SettingsIcon,
 } from '../../static/svg';
+import AuthHeaderButton from '../auth/AuthHeaderButton';
 
 function LeftSidebar() {
   return (
@@ -15,6 +16,7 @@ function LeftSidebar() {
       <Top>
         <Logo />
         <div>GAMEJIGI</div>
+        <AuthHeaderButton />
       </Top>
       <Middle>
         <HomeIcon />

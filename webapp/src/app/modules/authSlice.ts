@@ -40,14 +40,15 @@ export const authSlice = createSlice({
       state.isSucceed = false;
       state.isLoading = false;
     },
-    changeModalVisible: (state, action) => {
-      
-    }
+    setModalVisible: (state, action: PayloadAction<boolean>) => {
+      state.modalVisible = action.payload;
+    },
   },
 });
 
 const { actions, reducer: authReducer } = authSlice;
 
-export const { setUser, setUserSucceed, setUserError } = actions;
+export const { setUser, setUserSucceed, setUserError, setModalVisible } =
+  actions;
 
 export default authReducer;

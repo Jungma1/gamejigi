@@ -6,3 +6,4 @@ export { ReactComponent as SettingsIcon } from './settings.svg';
 export { ReactComponent as GithubIcon } from './github.svg';
 export { ReactComponent as GoogleIcon } from './google.svg';
 export { ReactComponent as FaceBookIcon } from './facebook.svg';
+export { ReactComponent as CancelIcon } from './cancel.svg';
