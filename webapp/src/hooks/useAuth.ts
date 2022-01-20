@@ -1,7 +1,7 @@
 import { useAppSelector } from '../app/hooks';
 
 export function useAuth() {
-  const user = useAppSelector(state => state.auth.user);
+  const { user, modalVisible } = useAppSelector(state => state.auth);
 
-  return { user };
+  return { user, modalVisible };
 }

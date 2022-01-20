@@ -10,6 +10,7 @@ export interface AuthState {
   isLoading: boolean;
   isSucceed: boolean;
   isError: null;
+  modalVisible: boolean;
 }
 
 const initialState: AuthState = {
@@ -17,6 +18,7 @@ const initialState: AuthState = {
   isLoading: false,
   isSucceed: false,
   isError: null,
+  modalVisible: false,
 };
 
 export const authSlice = createSlice({
@@ -38,6 +40,9 @@ export const authSlice = createSlice({
       state.isSucceed = false;
       state.isLoading = false;
     },
+    changeModalVisible: (state, action) => {
+      
+    }
   },
 });
 

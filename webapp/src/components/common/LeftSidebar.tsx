@@ -12,18 +12,18 @@ import {
 function LeftSidebar() {
   return (
     <Block>
-      <StyledTop>
+      <Top>
         <Logo />
         <div>GAMEJIGI</div>
-      </StyledTop>
-      <StyledMiddle>
+      </Top>
+      <Middle>
         <HomeIcon />
         <CalendarIcon />
         <PostIcon />
-      </StyledMiddle>
-      <StyledBottom>
+      </Middle>
+      <Bottom>
         <SettingsIcon />
-      </StyledBottom>
+      </Bottom>
     </Block>
   );
 }
@@ -39,7 +39,7 @@ const Block = styled.div`
   min-height: 100vh;
 `;
 
-const StyledTop = styled.div`
+const Top = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,7 +52,7 @@ const StyledTop = styled.div`
   }
 `;
 
-const StyledMiddle = styled.div`
+const Middle = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 4rem;
@@ -68,7 +68,7 @@ const StyledMiddle = styled.div`
   }
 `;
 
-const StyledBottom = styled.div`
+const Bottom = styled.div`
   margin-bottom: 2rem;
 
   svg {
