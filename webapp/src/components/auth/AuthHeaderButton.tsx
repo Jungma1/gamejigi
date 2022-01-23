@@ -8,20 +8,20 @@ function AuthHeaderButton() {
 
   if (!user) {
     return (
-      <AuthHeaderButtonBlock onClick={handleChangeModalVisible}>
+      <Block onClick={handleChangeModalVisible}>
         <span>로그인</span>
-      </AuthHeaderButtonBlock>
+      </Block>
     );
   }
 
   return (
-    <AuthHeaderButtonBlock>
+    <Block>
       <span>내정보</span>
-    </AuthHeaderButtonBlock>
+    </Block>
   );
 }
 
-const AuthHeaderButtonBlock = styled.div`
+const Block = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

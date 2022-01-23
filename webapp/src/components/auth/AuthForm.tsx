@@ -14,14 +14,14 @@ function AuthForm() {
     <>
       <Background />
       <Wrapper>
-        <BoxTemplate>
+        <Box>
           <CancelBlock>
             <CancelIcon onClick={handleChangeModalVisible} />
           </CancelBlock>
           <div>환영합니다!</div>
           <div>원하는 로그인 방식을 선택하세요!</div>
           <AuthSocialButtonGroup />
-        </BoxTemplate>
+        </Box>
       </Wrapper>
     </>
   );
@@ -44,7 +44,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const BoxTemplate = styled.div`
+const Box = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;

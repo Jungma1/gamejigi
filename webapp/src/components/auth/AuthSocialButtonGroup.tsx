@@ -4,15 +4,15 @@ import AuthSocialButton from './AuthSocialButton';
 
 function AuthSocialButtonGroup() {
   return (
-    <AuthSocialGroupBlock>
-      <AuthSocialButton provider="github" />
-      <AuthSocialButton provider="google" />
-      <AuthSocialButton provider="facebook" />
-    </AuthSocialGroupBlock>
+    <Block>
+      <AuthSocialButton provider='github' />
+      <AuthSocialButton provider='google' />
+      <AuthSocialButton provider='facebook' />
+    </Block>
   );
 }
 
-const AuthSocialGroupBlock = styled.div`
+const Block = styled.div`
   a:nth-child(2) {
     margin-left: 3rem;
     margin-right: 3rem;

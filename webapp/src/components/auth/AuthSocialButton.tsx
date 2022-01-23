@@ -26,12 +26,12 @@ function AuthSocialButton({ provider }: AuthSocialButtonProps) {
   const { icon: Icon, path } = providerIcons[provider];
 
   return (
-    <AuthSocialButtonBlock href={path}>
+    <Block href={path}>
       <Icon />
-    </AuthSocialButtonBlock>
+    </Block>
   );
 }
 
-const AuthSocialButtonBlock = styled.a``;
+const Block = styled.a``;
 
 export default AuthSocialButton;
