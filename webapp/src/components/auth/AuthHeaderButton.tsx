@@ -16,7 +16,7 @@ function AuthHeaderButton() {
 
   return (
     <Block>
-      <span>내정보</span>
+      <span>로그아웃</span>
     </Block>
   );
 }

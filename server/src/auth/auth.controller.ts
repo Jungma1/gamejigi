@@ -4,8 +4,8 @@ import { JwtAuthService } from './jwt-auth/jwt-auth.service';
 import { Request, Response } from 'express';
 import { UserDto } from 'src/user/dto/user.dto';
 import { JwtAuthGuard } from './jwt-auth/guard/jwt-auth.guard';
-import { User } from 'src/user/models/user.entity';
 import { ConfigService } from '@nestjs/config';
+import { UserProfile } from 'src/user/models/user-profile.entity';
 
 @Controller('api/auth')
 export class AuthController {
@@ -14,12 +14,20 @@ export class AuthController {
     private readonly configService: ConfigService,
   ) {}
 
+  /**
+   * Google
+   * GET  /api/auth/google
+   */
   @Get('google')
   @UseGuards(GoogleGuard)
   async googleAuth() {
     // callback url
   }
 
+  /**
+   * Google callback
+   * GET /api/auth/google/callback
+   */
   @Get('google/callback')
   @UseGuards(GoogleGuard)
   async googleAuthCallback(@Req() req: Request, @Res() res: Response) {
@@ -40,30 +48,18 @@ export class AuthController {
     return res.redirect(this.configService.get('HOST'));
   }
 
+  /**
+   * Auth check
+   * GET /api/auth/check
+   */
   @Get('check')
   @UseGuards(JwtAuthGuard)
   async checkUser(@Req() req: Request, @Res() res: Response) {
-    const { email, username } = req.user as User;
+    const { display_name, thumbnail } = req.user as UserProfile;
 
     return res.status(200).json({
-      email,
-      username,
+      username: display_name,
+      thumbnail,
     });
-  }
-
-  @Get('test')
-  async getTestToken(@Res() res: Response) {
-    const { accessToken, refreshToken } = await this.jwtAuthService.testToken();
-
-    res.cookie('access_token', accessToken, {
-      httpOnly: true,
-      maxAge: 60 * 60 * 1000,
-    });
-    res.cookie('refresh_token', refreshToken, {
-      httpOnly: true,
-      maxAge: 60 * 60 * 1000 * 24 * 30,
-    });
-
-    return res.send();
   }
 }

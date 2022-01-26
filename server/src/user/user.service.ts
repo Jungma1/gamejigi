@@ -3,36 +3,42 @@ import { UserDto } from './dto/user.dto';
 import { UserRepository } from './models/user.repository';
 import * as bcrypt from 'bcrypt';
 import { UserAuthTokenRepository } from './models/user-auth-token.repository';
+import { UserProfileRepository } from './models/user-profile.repository';
 
 @Injectable()
 export class UserService {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly userAuthTokenRepository: UserAuthTokenRepository,
+    private readonly userProfileRepository: UserProfileRepository,
   ) {}
 
   async create(user: UserDto) {
+    // create user
     const createUser = this.userRepository.create(user);
-    const saveUser = await this.userRepository.save(createUser);
-    const createUserAuthToken = this.userAuthTokenRepository.create({
-      user_id: saveUser.id,
-    });
+    await this.userRepository.save(createUser);
 
+    // create profile
+    const userProfile = this.userProfileRepository.create({
+      display_name: createUser.username,
+      thumbnail: 'default',
+      fk_user_id: createUser.id,
+    });
+    await this.userProfileRepository.save(userProfile);
+
+    // create auth token
+    const createUserAuthToken = this.userAuthTokenRepository.create({
+      user_id: createUser.id,
+    });
     await this.userAuthTokenRepository.save(createUserAuthToken);
 
-    return saveUser;
+    return createUser;
   }
 
-  async findOne(id: string) {
-    return this.userRepository.findOne({ id });
-  }
-
-  async findAll() {
-    return this.userRepository.find();
-  }
-
-  async findFirst() {
-    return this.userRepository.findOne();
+  async findOneProfile(userId: string) {
+    return this.userProfileRepository.findOne({
+      fk_user_id: userId,
+    });
   }
 
   async findOneByProviderAndSocialId(user: UserDto) {

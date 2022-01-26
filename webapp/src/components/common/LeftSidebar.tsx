@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import {
@@ -11,6 +12,8 @@ import {
 import AuthHeaderButton from '../auth/AuthHeaderButton';
 
 function LeftSidebar() {
+  const navigate = useNavigate();
+
   return (
     <Block>
       <Top>
@@ -24,7 +27,7 @@ function LeftSidebar() {
         <PostIcon />
       </Middle>
       <Bottom>
-        <SettingsIcon />
+        <SettingsIcon onClick={() => navigate('/settings')} />
       </Bottom>
     </Block>
   );

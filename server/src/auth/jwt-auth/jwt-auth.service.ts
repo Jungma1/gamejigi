@@ -74,19 +74,4 @@ export class JwtAuthService {
 
     return accessToken;
   }
-
-  async testToken() {
-    const user = await this.userService.findFirst();
-    const accessToken = this.jwtService.sign({ id: user.id });
-    const refreshToken = this.jwtService.sign(
-      { id: user.id },
-      { expiresIn: this.configService.get<string>('REFRESH_TOKEN_EXPIRES_IN') },
-    );
-    await this.userService.setHashedRefreshToken(user.id, refreshToken);
-
-    return {
-      accessToken,
-      refreshToken,
-    };
-  }
 }
