@@ -6,12 +6,14 @@ import { UserDto } from 'src/user/dto/user.dto';
 import { JwtAuthGuard } from './jwt-auth/guard/jwt-auth.guard';
 import { ConfigService } from '@nestjs/config';
 import { UserProfile } from 'src/user/models/user-profile.entity';
+import { UserService } from 'src/user/user.service';
 
 @Controller('api/auth')
 export class AuthController {
   constructor(
     private readonly jwtAuthService: JwtAuthService,
     private readonly configService: ConfigService,
+    private readonly userService: UserService,
   ) {}
 
   /**
@@ -61,5 +63,18 @@ export class AuthController {
       username: display_name,
       thumbnail,
     });
+  }
+
+  /**
+   * GET /api/auth/logout
+   */
+  @Get('/logout')
+  @UseGuards(JwtAuthGuard)
+  async logout(@Req() req: Request, @Res() res: Response) {
+    const { fk_user_id } = req.user as UserProfile;
+
+    await this.userService.removeHashedRefreshToken(fk_user_id);
+
+    return res.clearCookie('access_token').clearCookie('refresh_token').send();
   }
 }

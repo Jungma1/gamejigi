@@ -4,7 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import palette from '../../lib/styles/palette';
 
 function AuthHeaderButton() {
-  const { user, handleChangeModalVisible } = useAuth();
+  const { user, handleChangeModalVisible, handleLogout } = useAuth();
 
   if (!user) {
     return (
@@ -15,7 +15,7 @@ function AuthHeaderButton() {
   }
 
   return (
-    <Block>
+    <Block onClick={handleLogout}>
       <span>로그아웃</span>
     </Block>
   );

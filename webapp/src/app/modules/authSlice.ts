@@ -7,17 +7,15 @@ export interface User {
 
 export interface AuthState {
   user: User | null;
-  isLoading: boolean;
-  isSucceed: boolean;
   isError: null;
+  isLoading: boolean;
   modalVisible: boolean;
 }
 
 const initialState: AuthState = {
   user: null,
-  isLoading: false,
-  isSucceed: false,
   isError: null,
+  isLoading: false,
   modalVisible: false,
 };
 
@@ -30,14 +28,23 @@ export const authSlice = createSlice({
     },
     setUserSucceed: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
-      state.isSucceed = true;
       state.isError = null;
       state.isLoading = false;
     },
     setUserError: (state, action) => {
       state.user = null;
       state.isError = action.payload;
-      state.isSucceed = false;
+      state.isLoading = false;
+    },
+    logout: state => {
+      state.isLoading = true;
+    },
+    logoutSucceed: state => {
+      state.user = null;
+      state.isLoading = false;
+    },
+    logoutError: (state, action) => {
+      state.isError = action.payload;
       state.isLoading = false;
     },
     setModalVisible: (state, action: PayloadAction<boolean>) => {
@@ -48,7 +55,14 @@ export const authSlice = createSlice({
 
 const { actions, reducer: authReducer } = authSlice;
 
-export const { setUser, setUserSucceed, setUserError, setModalVisible } =
-  actions;
+export const {
+  setUser,
+  setUserSucceed,
+  setUserError,
+  logout,
+  logoutSucceed,
+  logoutError,
+  setModalVisible,
+} = actions;
 
 export default authReducer;

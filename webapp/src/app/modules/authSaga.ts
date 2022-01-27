@@ -1,6 +1,13 @@
 import client from '../../lib/api/client';
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { setUser, setUserError, setUserSucceed } from './authSlice';
+import {
+  logout,
+  logoutError,
+  logoutSucceed,
+  setUser,
+  setUserError,
+  setUserSucceed,
+} from './authSlice';
 
 export function* checkSaga(): Generator {
   try {
@@ -11,6 +18,16 @@ export function* checkSaga(): Generator {
   }
 }
 
+export function* logoutSaga(): Generator {
+  try {
+    yield call(client.get, '/api/auth/logout');
+    yield put(logoutSucceed());
+  } catch (err) {
+    yield put(logoutError(err));
+  }
+}
+
 export default function* authSaga() {
   yield takeLatest(setUser, checkSaga);
+  yield takeLatest(logout, logoutSaga);
 }

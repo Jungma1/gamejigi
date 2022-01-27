@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { setModalVisible } from '../app/modules/authSlice';
+import { logout, setModalVisible } from '../app/modules/authSlice';
 
 export function useAuth() {
   const dispatch = useAppDispatch();
@@ -11,5 +11,9 @@ export function useAuth() {
       : dispatch(setModalVisible(true));
   };
 
-  return { user, modalVisible, handleChangeModalVisible };
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  return { user, modalVisible, handleChangeModalVisible, handleLogout };
 }
