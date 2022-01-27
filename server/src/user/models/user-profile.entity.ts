@@ -12,6 +12,9 @@ export class UserProfile {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
+  @Column('uuid')
+  fk_user_id!: string;
+
   @Column({ length: 255 })
   display_name!: string;
 
@@ -21,7 +24,4 @@ export class UserProfile {
   @OneToOne(() => User, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'fk_user_id' })
   user!: User;
-
-  @Column('uuid')
-  fk_user_id!: string;
 }

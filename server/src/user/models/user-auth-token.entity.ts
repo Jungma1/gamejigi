@@ -28,7 +28,7 @@ export class UserAuthToken {
   @Column({ nullable: true })
   hashed_refresh_token!: string;
 
-  @ManyToOne((type) => User, (user) => user.id, { onDelete: 'CASCADE' })
+  @ManyToOne(() => User, (user) => user.id, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id' })
   user!: User;
 }
