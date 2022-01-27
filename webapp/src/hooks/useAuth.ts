@@ -11,9 +11,9 @@ export function useAuth() {
       : dispatch(setModalVisible(true));
   };
 
-  const handleLogout = () => {
+  const handleLogoutClick = () => {
     dispatch(logout());
   };
 
-  return { user, modalVisible, handleChangeModalVisible, handleLogout };
+  return { user, modalVisible, handleChangeModalVisible, handleLogoutClick };
 }

@@ -17,7 +17,7 @@ function LeftSidebar() {
   return (
     <Block>
       <Top>
-        <Logo />
+        <Logo onClick={() => navigate('/')} />
         <div>GAMEJIGI</div>
         <AuthHeaderButton />
       </Top>
@@ -42,6 +42,10 @@ const Block = styled.div`
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   min-height: 100vh;
+
+  svg {
+    cursor: pointer;
+  }
 `;
 
 const Top = styled.div`
@@ -64,8 +68,6 @@ const Middle = styled.div`
   margin-bottom: 4rem;
 
   svg {
-    cursor: pointer;
-
     :nth-child(2) {
       margin-top: 2rem;
       margin-bottom: 2rem;
@@ -75,10 +77,6 @@ const Middle = styled.div`
 
 const Bottom = styled.div`
   margin-bottom: 2rem;
-
-  svg {
-    cursor: pointer;
-  }
 `;
 
 export default LeftSidebar;
