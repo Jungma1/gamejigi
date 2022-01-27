@@ -2,14 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
 import { UserRepository } from './models/user.repository';
 import * as bcrypt from 'bcrypt';
-import { UserAuthTokenRepository } from './models/user-auth-token.repository';
 import { UserProfileRepository } from './models/user-profile.repository';
 
 @Injectable()
 export class UserService {
   constructor(
     private readonly userRepository: UserRepository,
-    private readonly userAuthTokenRepository: UserAuthTokenRepository,
     private readonly userProfileRepository: UserProfileRepository,
   ) {}
 
@@ -25,12 +23,6 @@ export class UserService {
       fk_user_id: createUser.id,
     });
     await this.userProfileRepository.save(userProfile);
-
-    // create auth token
-    const createUserAuthToken = this.userAuthTokenRepository.create({
-      user_id: createUser.id,
-    });
-    await this.userAuthTokenRepository.save(createUserAuthToken);
 
     return createUser;
   }
@@ -55,27 +47,24 @@ export class UserService {
     return bcrypt.compare(refreshToken, hashedRefreshToken);
   }
 
-  async setHashedRefreshToken(userId: string, refreshToken: string) {
+  async setHashedRefreshToken(id: string, refreshToken: string) {
     const salt = await bcrypt.genSalt();
     const hashedRefreshToken = await bcrypt.hash(refreshToken, salt);
 
-    return this.userAuthTokenRepository.update(
-      { user_id: userId },
+    return this.userRepository.update(
+      { id },
       { hashed_refresh_token: hashedRefreshToken },
     );
   }
 
-  async getHashedRefreshToken(userId: string) {
+  async getHashedRefreshToken(id: string) {
     const { hashed_refresh_token: hashedRefreshToken } =
-      await this.userAuthTokenRepository.findOne({ user_id: userId });
+      await this.userRepository.findOne({ id });
 
     return hashedRefreshToken;
   }
 
-  async removeHashedRefreshToken(userId: string) {
-    return this.userAuthTokenRepository.update(
-      { user_id: userId },
-      { hashed_refresh_token: null },
-    );
+  async removeHashedRefreshToken(id: string) {
+    return this.userRepository.update({ id }, { hashed_refresh_token: null });
   }
 }

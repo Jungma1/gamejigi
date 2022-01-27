@@ -28,6 +28,9 @@ export class User {
   @Column()
   role!: string;
 
+  @Column({ nullable: true })
+  hashed_refresh_token!: string;
+
   @Column('timestamptz')
   @CreateDateColumn()
   created_at!: Date;
