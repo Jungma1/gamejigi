@@ -20,7 +20,7 @@ export class UserProfile {
   display_name!: string;
 
   @Column({ nullable: true })
-  thumbnail!: string | null;
+  thumbnail!: string;
 
   @Column('timestamptz')
   @UpdateDateColumn()
