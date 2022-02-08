@@ -1,5 +1,6 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   OneToOne,
@@ -21,6 +22,10 @@ export class UserProfile {
 
   @Column({ nullable: true })
   thumbnail!: string;
+
+  @Column('timestamptz')
+  @CreateDateColumn()
+  created_at!: Date;
 
   @Column('timestamptz')
   @UpdateDateColumn()
