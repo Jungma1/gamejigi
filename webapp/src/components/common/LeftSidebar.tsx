@@ -38,7 +38,7 @@ const Block = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background: ${palette.black};
+  background: ${palette.gray900};
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   min-height: 100vh;
