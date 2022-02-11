@@ -1,33 +1,27 @@
 import client from '../../lib/api/client';
 import { call, put, takeLatest } from 'redux-saga/effects';
-import {
-  logout,
-  logoutError,
-  logoutSucceed,
-  setUser,
-  setUserError,
-  setUserSucceed,
-} from './authSlice';
+import { setUser, setUserError, setUserSucceed } from './authSlice';
+import userStorage from '../../lib/userStorage';
 
 export function* checkSaga(): Generator {
   try {
     const result: any = yield call(client.get, '/api/auth/check');
+    userStorage.set(result.data);
     yield put(setUserSucceed(result.data));
   } catch (err) {
     yield put(setUserError(err));
   }
 }
 
-export function* logoutSaga(): Generator {
+export function checkErrorSaga() {
   try {
-    yield call(client.get, '/api/auth/logout');
-    yield put(logoutSucceed());
-  } catch (err) {
-    yield put(logoutError(err));
+    userStorage.clear();
+  } catch (e) {
+    console.log('localStorage is not working');
   }
 }
 
 export default function* authSaga() {
   yield takeLatest(setUser, checkSaga);
-  yield takeLatest(logout, logoutSaga);
+  yield takeLatest(setUserError, checkErrorSaga);
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AuthForm from './components/auth/AuthForm';
-import useAuthEffect from './hooks/useAuthEffect';
+import useAuthCheckUserEffect from './hooks/useAuthCheckUserEffect';
 import { GlobalStyled } from './lib/styles/GlobalStyled';
 import HomePage from './pages/home/HomePage';
 import SettingsPage from './pages/settings/SettingsPage';
 
 function App() {
-  useAuthEffect();
+  useAuthCheckUserEffect();
 
   return (
     <>

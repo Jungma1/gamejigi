@@ -23,6 +23,9 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    setPayloadUser: (state, action: PayloadAction<User | null>) => {
+      state.user = action.payload;
+    },
     setUser: state => {
       state.isLoading = true;
     },
@@ -36,17 +39,6 @@ export const authSlice = createSlice({
       state.isError = action.payload;
       state.isLoading = false;
     },
-    logout: state => {
-      state.isLoading = true;
-    },
-    logoutSucceed: state => {
-      state.user = null;
-      state.isLoading = false;
-    },
-    logoutError: (state, action) => {
-      state.isError = action.payload;
-      state.isLoading = false;
-    },
     setModalVisible: (state, action: PayloadAction<boolean>) => {
       state.modalVisible = action.payload;
     },
@@ -56,12 +48,10 @@ export const authSlice = createSlice({
 const { actions, reducer: authReducer } = authSlice;
 
 export const {
+  setPayloadUser,
   setUser,
   setUserSucceed,
   setUserError,
-  logout,
-  logoutSucceed,
-  logoutError,
   setModalVisible,
 } = actions;
 
