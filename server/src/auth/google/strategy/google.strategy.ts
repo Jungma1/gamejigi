@@ -22,7 +22,6 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       username: displayName,
       provider: provider,
       social_id: id,
-      role: 'USER',
     };
   }
 }

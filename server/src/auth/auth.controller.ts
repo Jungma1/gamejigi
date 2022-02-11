@@ -17,8 +17,8 @@ export class AuthController {
   ) {}
 
   /**
-   * Google
    * GET  /api/auth/google
+   * Google Signin
    */
   @Get('google')
   @UseGuards(GoogleGuard)
@@ -27,8 +27,8 @@ export class AuthController {
   }
 
   /**
-   * Google callback
    * GET /api/auth/google/callback
+   * Google Signin callback url
    */
   @Get('google/callback')
   @UseGuards(GoogleGuard)
@@ -51,8 +51,8 @@ export class AuthController {
   }
 
   /**
-   * Auth check
    * GET /api/auth/check
+   * Auth check
    */
   @Get('check')
   @UseGuards(JwtAuthGuard)
