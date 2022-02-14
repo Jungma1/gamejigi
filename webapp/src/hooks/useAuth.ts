@@ -15,7 +15,7 @@ export function useAuth() {
       : dispatch(setModalVisible(true));
   };
 
-  const handleLogoutClick = async () => {
+  const handleClickLogout = async () => {
     try {
       await client.get('/api/auth/logout');
     } catch {}
@@ -25,5 +25,5 @@ export function useAuth() {
     navigate('/');
   };
 
-  return { user, modalVisible, handleChangeModalVisible, handleLogoutClick };
+  return { user, modalVisible, handleChangeModalVisible, handleClickLogout };
 }

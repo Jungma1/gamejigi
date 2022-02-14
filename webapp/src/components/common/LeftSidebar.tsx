@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useAuth } from '../../hooks/useAuth';
 import palette from '../../lib/styles/palette';
 import {
   CalendarIcon,
@@ -12,6 +13,7 @@ import {
 import AuthHeaderButton from '../auth/AuthHeaderButton';
 
 function LeftSidebar() {
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   return (
@@ -27,7 +29,7 @@ function LeftSidebar() {
         <PostIcon />
       </Middle>
       <Bottom>
-        <SettingsIcon onClick={() => navigate('/settings')} />
+        {user && <SettingsIcon onClick={() => navigate('/setting')} />}
       </Bottom>
     </Block>
   );

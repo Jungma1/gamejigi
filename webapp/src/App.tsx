@@ -4,7 +4,7 @@ import AuthForm from './components/auth/AuthForm';
 import useAuthCheckUserEffect from './hooks/useAuthCheckUserEffect';
 import { GlobalStyled } from './lib/styles/GlobalStyled';
 import HomePage from './pages/home/HomePage';
-import SettingsPage from './pages/settings/SettingsPage';
+import SettingPage from './pages/setting/SettingPage';
 
 function App() {
   useAuthCheckUserEffect();
@@ -15,7 +15,7 @@ function App() {
       <AuthForm />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/settings' element={<SettingsPage />} />
+        <Route path='/setting' element={<SettingPage />} />
       </Routes>
     </>
   );

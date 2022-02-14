@@ -4,10 +4,10 @@ import { useAuth } from '../../hooks/useAuth';
 import palette from '../../lib/styles/palette';
 
 function AuthHeaderButton() {
-  const { user, handleChangeModalVisible, handleLogoutClick } = useAuth();
+  const { user, handleChangeModalVisible, handleClickLogout } = useAuth();
 
   return (
-    <Block onClick={user ? handleLogoutClick : handleChangeModalVisible}>
+    <Block onClick={user ? handleClickLogout : handleChangeModalVisible}>
       <span>{user ? '로그아웃' : '로그인'}</span>
     </Block>
   );
