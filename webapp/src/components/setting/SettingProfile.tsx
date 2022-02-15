@@ -22,12 +22,13 @@ function SettingProfile() {
       <EtcBox>
         <div className='block'>
           <div className='block-top'>
-            {/* <div>{user?.no}</div> */}
-            <div>no.22</div>
+            <div>no.{user?.no}</div>
             <SettingSocialButton />
           </div>
           <div className='block-bottom'>
-            <span>React, NestJS를 주로 사용합니다</span>
+            <span>
+              {user?.short_word ? user?.short_word : '자기소개를 등록해보세요!'}
+            </span>
           </div>
         </div>
       </EtcBox>

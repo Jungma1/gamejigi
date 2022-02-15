@@ -57,11 +57,18 @@ export class AuthController {
   @Get('check')
   @UseGuards(JwtAuthGuard)
   async checkUser(@Req() req: Request, @Res() res: Response) {
-    const { display_name, thumbnail } = req.user as UserProfile;
+    const {
+      no,
+      display_name: username,
+      thumbnail,
+      short_word,
+    } = req.user as UserProfile;
 
     return res.status(200).json({
-      username: display_name,
+      no,
+      username,
       thumbnail,
+      short_word,
     });
   }
 

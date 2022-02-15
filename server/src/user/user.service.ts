@@ -19,7 +19,6 @@ export class UserService {
     // create profile
     const userProfile = this.userProfileRepository.create({
       display_name: createUser.username,
-      thumbnail: 'default',
       fk_user_id: createUser.id,
     });
     await this.userProfileRepository.save(userProfile);

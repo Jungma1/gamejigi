@@ -17,11 +17,17 @@ export class UserProfile {
   @Column('uuid')
   fk_user_id!: string;
 
+  @Column({ default: 0 })
+  no!: number;
+
   @Column({ length: 255 })
   display_name!: string;
 
-  @Column({ nullable: true })
-  thumbnail!: string | null;
+  @Column({ length: 255, nullable: true })
+  short_word!: string;
+
+  @Column({ length: 255, nullable: true })
+  thumbnail!: string;
 
   @Column('timestamptz')
   @CreateDateColumn()
