@@ -35,7 +35,7 @@ function LeftSidebar() {
   );
 }
 
-const Block = styled.header`
+const Block = styled.aside`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -43,7 +43,9 @@ const Block = styled.header`
   background: ${palette.gray900};
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  min-height: 100vh;
+  height: 100%;
+  position: fixed;
+  top: 0;
 
   svg {
     cursor: pointer;
