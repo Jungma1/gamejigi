@@ -7,5 +7,5 @@ export default function useToggle(initialValue: boolean) {
     setValue(!value);
   }, [value]);
 
-  return [value, onToggle];
+  return [value, onToggle] as [boolean, typeof onToggle];
 }

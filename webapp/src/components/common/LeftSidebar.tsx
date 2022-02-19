@@ -35,7 +35,7 @@ function LeftSidebar() {
   );
 }
 
-const Block = styled.div`
+const Block = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
