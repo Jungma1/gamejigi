@@ -4,7 +4,7 @@ import { setModalVisible, setPayloadUser } from '../app/modules/authSlice';
 import client from '../lib/api/client';
 import userStorage from '../lib/userStorage';
 
-export function useAuth() {
+export default function useAuth() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user, modalVisible } = useAppSelector(state => state.auth);

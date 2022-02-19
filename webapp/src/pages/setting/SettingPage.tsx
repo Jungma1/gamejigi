@@ -2,7 +2,7 @@ import React from 'react';
 import LeftSidebar from '../../components/common/LeftSidebar';
 import Responsive from '../../components/common/Responsive';
 import Setting from '../../components/setting/Setting';
-import { useAuth } from '../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
 function SettingPage() {
   const { user } = useAuth();

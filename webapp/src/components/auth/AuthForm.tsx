@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useAuth } from '../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 import palette from '../../lib/styles/palette';
 import { CancelIcon } from '../../static/svg';
 import AuthSocialButtonGroup from './AuthSocialButtonGroup';
