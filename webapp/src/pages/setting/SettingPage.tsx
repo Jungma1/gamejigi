@@ -3,6 +3,7 @@ import LeftSidebar from '../../components/common/LeftSidebar';
 import Responsive from '../../components/common/Responsive';
 import Setting from '../../components/setting/Setting';
 import useAuth from '../../hooks/useAuth';
+import { MainWrapper } from '../../lib/styles/MainWrapper';
 
 function SettingPage() {
   const { user } = useAuth();
@@ -13,8 +14,10 @@ function SettingPage() {
 
   return (
     <Responsive>
-      <LeftSidebar />
-      <Setting />
+      <MainWrapper>
+        <LeftSidebar />
+        <Setting />
+      </MainWrapper>
     </Responsive>
   );
 }

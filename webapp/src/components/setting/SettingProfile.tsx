@@ -41,10 +41,11 @@ function SettingProfile() {
 const Block = styled.div`
   display: flex;
   height: 8rem;
-  padding-top: 6rem;
-  justify-content: flex-start;
   align-items: center;
   font-weight: bold;
+  margin-top: 6rem;
+  padding-left: 8.625rem;
+  padding-right: 8.625rem;
 
   .profile-image {
     padding-right: 2rem;

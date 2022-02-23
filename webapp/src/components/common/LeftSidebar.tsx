@@ -18,34 +18,38 @@ function LeftSidebar() {
 
   return (
     <Block>
-      <Top>
-        <Logo onClick={() => navigate('/')} />
-        <div>GAMEJIGI</div>
-        <AuthHeaderButton />
-      </Top>
-      <Middle>
-        <HomeIcon />
-        <CalendarIcon />
-        <PostIcon />
-      </Middle>
-      <Bottom>
-        {user && <SettingsIcon onClick={() => navigate('/setting')} />}
-      </Bottom>
+      <Template>
+        <Top>
+          <Logo onClick={() => navigate('/')} />
+          <div>GAMEJIGI</div>
+          <AuthHeaderButton />
+        </Top>
+        <Middle>
+          <HomeIcon />
+          <CalendarIcon />
+          <PostIcon />
+        </Middle>
+        <Bottom>
+          {user && <SettingsIcon onClick={() => navigate('/setting')} />}
+        </Bottom>
+      </Template>
     </Block>
   );
 }
 
 const Block = styled.aside`
+  width: 5rem;
+`;
+
+const Template = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background: ${palette.gray900};
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  width: 5rem;
   height: 100%;
   position: fixed;
-  top: 0;
 
   svg {
     cursor: pointer;

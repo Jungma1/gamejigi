@@ -11,10 +11,8 @@ function Responsive({ children }: ResponsiveProps) {
 }
 
 export const ResponsiveTemplate = styled.div`
-  display: flex;
-  align-items: center;
   width: 1440px;
-  min-height: 100%;
+  min-height: 100vh;
   margin-left: auto;
   margin-right: auto;
   background: ${palette.gray800};
