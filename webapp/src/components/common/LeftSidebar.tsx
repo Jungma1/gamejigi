@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import useAuth from '../../hooks/useAuth';
+import media from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import {
   CalendarIcon,
@@ -38,7 +39,11 @@ function LeftSidebar() {
 }
 
 const Block = styled.aside`
-  width: 5rem;
+  width: 6rem;
+
+  ${media.medium} {
+    display: none;
+  }
 `;
 
 const Template = styled.div`
@@ -47,7 +52,7 @@ const Template = styled.div`
   justify-content: space-between;
   align-items: center;
   background: ${palette.gray900};
-  width: 5rem;
+  width: 6rem;
   height: 100%;
   position: fixed;
 
