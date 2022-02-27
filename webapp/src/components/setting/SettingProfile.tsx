@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import useAuth from '../../hooks/useAuth';
 import useToggle from '../../lib/hooks/useToggle';
 import palette from '../../lib/styles/palette';
@@ -24,7 +24,7 @@ function SettingProfile() {
           <img src='img/profile.jpg' alt='profile' />
         </div>
       </TopBlock>
-      <BottomBlock edit={edit}>
+      <BottomBlock>
         <div className='box'>
           <div className='no'>
             <div>no.{user?.no}</div>
@@ -79,13 +79,7 @@ const TopBlock = styled.section`
   }
 `;
 
-const BottomBlock = styled.section<{ edit: boolean }>`
-  ${(props) =>
-    props.edit &&
-    css`
-      display: none;
-    `}
-
+const BottomBlock = styled.section`
   font-weight: bold;
   margin-top: 3rem;
   height: 8rem;
