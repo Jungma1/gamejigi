@@ -1,19 +1,20 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import useAuth from '../../hooks/useAuth';
 import palette from '../../lib/styles/palette';
+import transitions from '../../lib/styles/transitions';
 import { CancelIcon } from '../../static/svg';
 import AuthSocialButtonGroup from './AuthSocialButtonGroup';
 
 function AuthForm() {
-  const { modalVisible, handleChangeModalVisible } = useAuth();
+  const { modalVisible, closed, handleChangeModalVisible } = useAuth();
 
-  if (!modalVisible) return <></>;
+  if (!modalVisible && !closed) return null;
 
   return (
     <>
       <Background />
-      <Wrapper>
+      <Wrapper modalVisible={modalVisible}>
         <Box>
           <CancelBlock>
             <CancelIcon onClick={handleChangeModalVisible} />
@@ -33,15 +34,25 @@ const Background = styled.div`
   background: black;
   width: 100%;
   height: 100%;
+  z-index: 1;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ modalVisible: boolean }>`
   position: absolute;
   display: flex;
   width: 100%;
   height: 100%;
   justify-content: center;
   align-items: center;
+  z-index: 2;
+  ${(props) =>
+    props.modalVisible
+      ? css`
+          animation: ${transitions.popInUp} 0.5s forwards ease-in-out;
+        `
+      : css`
+          animation: ${transitions.popOutDown} 0.3s forwards ease-in-out;
+        `}
 `;
 
 const Box = styled.div`

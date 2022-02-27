@@ -40,6 +40,7 @@ function LeftSidebar() {
 
 const Block = styled.aside`
   width: 6rem;
+  z-index: 0;
 
   ${media.medium} {
     display: none;

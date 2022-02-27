@@ -4,7 +4,7 @@ import useAuth from '../../hooks/useAuth';
 import palette from '../../lib/styles/palette';
 
 function AuthHeaderButton() {
-  const { user, handleChangeModalVisible, handleClickLogout } = useAuth();
+  const { user, handleClickLogout, handleChangeModalVisible } = useAuth();
 
   return (
     <Block onClick={user ? handleClickLogout : handleChangeModalVisible}>

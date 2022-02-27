@@ -28,7 +28,7 @@ export const authSlice = createSlice({
     setPayloadUser: (state, action: PayloadAction<User | null>) => {
       state.user = action.payload;
     },
-    setUser: state => {
+    setUser: (state) => {
       state.isLoading = true;
     },
     setUserSucceed: (state, action: PayloadAction<User>) => {

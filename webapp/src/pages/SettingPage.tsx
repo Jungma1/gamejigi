@@ -4,7 +4,6 @@ import LeftSidebar from '../components/common/LeftSidebar';
 import MainTemplate from '../components/common/MainTemplate';
 import Responsive from '../components/common/Responsive';
 import SettingProfile from '../components/setting/SettingProfile';
-import SettingProfileEtc from '../components/setting/SettingProfileEtc';
 import useAuth from '../hooks/useAuth';
 import media from '../lib/styles/media';
 
@@ -22,7 +21,6 @@ function SettingPage() {
         <SettingResponsive>
           <main>
             <SettingProfile />
-            <SettingProfileEtc />
           </main>
         </SettingResponsive>
       </MainTemplate>

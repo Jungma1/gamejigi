@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { setModalVisible, setPayloadUser } from '../app/modules/authSlice';
@@ -7,12 +8,11 @@ import userStorage from '../lib/userStorage';
 export default function useAuth() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { user, modalVisible } = useAppSelector(state => state.auth);
+  const { user, modalVisible } = useAppSelector((state) => state.auth);
+  const [closed, setClosed] = useState(false);
 
   const handleChangeModalVisible = () => {
-    modalVisible
-      ? dispatch(setModalVisible(false))
-      : dispatch(setModalVisible(true));
+    dispatch(setModalVisible(!modalVisible));
   };
 
   const handleClickLogout = async () => {
@@ -25,5 +25,32 @@ export default function useAuth() {
     navigate('/');
   };
 
-  return { user, modalVisible, handleChangeModalVisible, handleClickLogout };
+  const handleFormSubmitUser = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    if (modalVisible) {
+      setClosed(true);
+    } else {
+      timeoutId = setTimeout(() => setClosed(false), 200);
+    }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [modalVisible]);
+
+  return {
+    user,
+    closed,
+    modalVisible,
+    handleChangeModalVisible,
+    handleClickLogout,
+    handleFormSubmitUser,
+  };
 }
