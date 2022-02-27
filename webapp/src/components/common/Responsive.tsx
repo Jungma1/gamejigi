@@ -15,7 +15,7 @@ export const ResponsiveTemplate = styled.div`
   min-height: 100vh;
   margin-left: auto;
   margin-right: auto;
-  background: ${palette.gray800};
+  background: ${palette.gray7};
   border-left: 2px solid rgba(255, 255, 255, 0.5);
   border-right: 2px solid rgba(255, 255, 255, 0.5);
 

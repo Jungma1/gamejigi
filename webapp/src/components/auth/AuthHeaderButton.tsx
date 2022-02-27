@@ -30,7 +30,7 @@ const Block = styled.div`
   }
 
   :hover {
-    background: ${palette.gray100};
+    background: ${palette.gray0};
   }
 `;
 

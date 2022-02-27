@@ -52,7 +52,7 @@ const Template = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background: ${palette.gray900};
+  background: ${palette.gray8};
   width: 6rem;
   height: 100%;
   position: fixed;

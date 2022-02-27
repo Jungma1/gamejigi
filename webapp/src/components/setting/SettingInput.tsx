@@ -12,9 +12,9 @@ function SettingInput(props: SettingInputProps) {
 }
 
 const StyledInput = styled.input`
-  background: ${palette.gray700};
+  background: ${palette.gray6};
   outline: none;
-  border: 1px solid ${palette.gray500};
+  border: 1px solid ${palette.gray4};
 `;
 
 export default SettingInput;

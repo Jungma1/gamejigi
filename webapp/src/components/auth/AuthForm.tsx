@@ -59,7 +59,7 @@ const Box = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: ${palette.gray900};
+  background: ${palette.gray8};
   width: 320px;
   height: 200px;
   border-radius: 1rem;

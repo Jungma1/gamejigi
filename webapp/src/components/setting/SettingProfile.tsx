@@ -1,8 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import useAuth from '../../hooks/useAuth';
 import useToggle from '../../lib/hooks/useToggle';
 import palette from '../../lib/styles/palette';
+import Button from '../common/Button';
 import SettingSocialButton from './SettingSocialButton';
 
 function SettingProfile() {
@@ -15,15 +16,15 @@ function SettingProfile() {
         <div className='title'>
           <div className='name'>{user?.username}</div>
           <div className='buttons'>
-            <button onClick={() => onToggle()}>정보 수정하기</button>
-            <button>쪽지</button>
+            <Button color='green'>블로그 이동</Button>
+            <Button color='gray'>쪽지</Button>
           </div>
         </div>
         <div className='image'>
           <img src='img/profile.jpg' alt='profile' />
         </div>
       </TopBlock>
-      <BottomBlock>
+      <BottomBlock edit={edit}>
         <div className='box'>
           <div className='no'>
             <div>no.{user?.no}</div>
@@ -61,33 +62,8 @@ const TopBlock = styled.section`
     .buttons {
       display: flex;
 
-      button {
-        font-size: 1rem;
-        font-weight: bold;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        border-radius: 3px;
-        cursor: pointer;
-
-        :nth-child(1) {
-          margin-right: 1rem;
-          background: ${palette.green700};
-          padding-left: 1.5rem;
-          padding-right: 1.5rem;
-
-          :hover {
-            background: ${palette.green800};
-          }
-        }
-        :nth-child(2) {
-          background: ${palette.gray700};
-          padding-left: 1.25rem;
-          padding-right: 1.25rem;
-
-          :hover {
-            background: ${palette.gray600};
-          }
-        }
+      button:nth-child(1) {
+        margin-right: 1rem;
       }
     }
   }
@@ -103,7 +79,13 @@ const TopBlock = styled.section`
   }
 `;
 
-const BottomBlock = styled.section`
+const BottomBlock = styled.section<{ edit: boolean }>`
+  ${(props) =>
+    props.edit &&
+    css`
+      display: none;
+    `}
+
   font-weight: bold;
   margin-top: 3rem;
   height: 8rem;
@@ -113,7 +95,7 @@ const BottomBlock = styled.section`
     flex-direction: column;
     justify-content: center;
     height: 100%;
-    background: ${palette.gray900};
+    background: ${palette.gray8};
     border-radius: 0.625rem;
     padding-left: 2rem;
     padding-right: 2rem;
@@ -134,7 +116,7 @@ const BottomBlock = styled.section`
     }
 
     .short-word {
-      background: ${palette.gray800};
+      background: ${palette.gray7};
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
       padding-left: 1rem;

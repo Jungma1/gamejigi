@@ -18,6 +18,10 @@ export const GlobalStyled = createGlobalStyle`
     color: unset;
   }
 
+  * {
+    box-sizing: inherit;
+  }
+
   button {
     border: none;
     outline: none;
