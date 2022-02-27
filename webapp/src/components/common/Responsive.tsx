@@ -26,7 +26,7 @@ export const ResponsiveTemplate = styled.div`
     width: 768px;
   }
   ${media.small} {
-    width: 375px;
+    width: 100%;
   }
 `;
 

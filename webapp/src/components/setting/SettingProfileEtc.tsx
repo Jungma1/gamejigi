@@ -9,7 +9,7 @@ function SettingProfileEtc() {
 
   return (
     <Block>
-      <section className='profile-etc'>
+      <div className='profile-etc'>
         <div className='box'>
           <div className='no'>
             <div>no.{user?.no}</div>
@@ -21,12 +21,12 @@ function SettingProfileEtc() {
             </span>
           </div>
         </div>
-      </section>
+      </div>
     </Block>
   );
 }
 
-const Block = styled.div`
+const Block = styled.section`
   font-weight: bold;
   margin-top: 3rem;
 

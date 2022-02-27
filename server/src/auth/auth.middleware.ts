@@ -14,8 +14,8 @@ export class AuthMiddleware implements NestMiddleware {
     const accessToken = req.cookies['access_token'];
     const refreshToken = req.cookies['refresh_token'];
 
-    // accessToken OR refreshToken 이 없는 경우
-    if (!accessToken || !refreshToken) return next();
+    // accessToken AND refreshToken 이 없는 경우
+    if (!accessToken && !refreshToken) return next();
 
     try {
       // refreshToken 유효성 검사

@@ -6,6 +6,7 @@ import Responsive from '../components/common/Responsive';
 import SettingProfile from '../components/setting/SettingProfile';
 import SettingProfileEtc from '../components/setting/SettingProfileEtc';
 import useAuth from '../hooks/useAuth';
+import media from '../lib/styles/media';
 
 function SettingPage() {
   const { user } = useAuth();
@@ -35,8 +36,14 @@ const SettingResponsive = styled.div`
 
   main {
     width: 768px;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
     margin-left: auto;
     margin-right: auto;
+
+    ${media.small} {
+      width: 100%;
+    }
   }
 `;
 

@@ -8,27 +8,26 @@ function SettingProfile() {
 
   return (
     <Block>
-      <section className='profile-title'>
+      <div className='profile-title'>
         <div className='name'>{user?.username}</div>
         <div className='buttons'>
           <button>정보 수정하기</button>
           <button>쪽지</button>
         </div>
-      </section>
-      <section className='profile-image'>
+      </div>
+      <div className='profile-image'>
         <img src='img/profile.jpg' alt='profile' />
-      </section>
+      </div>
     </Block>
   );
 }
 
-const Block = styled.div`
+const Block = styled.section`
   display: flex;
   height: 8rem;
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
-  margin-top: 6rem;
 
   .profile-title {
     display: flex;
