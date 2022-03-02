@@ -1,82 +1,86 @@
 import React from 'react';
 import styled from 'styled-components';
-import useAuth from '../../hooks/useAuth';
-import useToggle from '../../lib/hooks/useToggle';
-import palette from '../../lib/styles/palette';
+import useSetting from '../../hooks/useSetting';
 import Button from '../common/Button';
-import SettingSocialButton from './SettingSocialButton';
+import SettingInput from './SettingInput';
+import SettingRow from './SettingRow';
 
 function SettingProfile() {
-  const { user } = useAuth();
-  const [edit, onToggle] = useToggle(false);
+  const { inputs, onChange } = useSetting();
 
   return (
-    <>
-      <Block>
-        <div className='title'>
-          <div className='name'>{user?.username}</div>
-          <div className='buttons'>
-            {edit ? (
-              <Button color='green' effect>
-                정보 수정하기
-              </Button>
-            ) : (
-              <Button color='green' onClick={() => onToggle()}>
-                정보 수정하기
-              </Button>
-            )}
-            <Button color='gray'>쪽지</Button>
+    <Section>
+      <div className='image'>
+        <img src='img/profile.jpg' alt='profile' />
+      </div>
+      <div className='info'>
+        <form>
+          <SettingRow
+            title='이름'
+            description='다른 유저들에게 보여질 이름을 등록하는 곳입니다.'
+          >
+            <SettingInput
+              name='username'
+              value={inputs.username}
+              onChange={onChange}
+              placeholder='이름을 입력하세요.'
+              fullWidth
+            />
+          </SettingRow>
+          <SettingRow
+            title='자기소개'
+            description='자신의 한 줄 소개를 등록하는 곳입니다.'
+          >
+            <SettingInput
+              name='short_word'
+              value={inputs.short_word}
+              onChange={onChange}
+              placeholder='자기소개를 입력하세요.'
+              fullWidth
+            />
+          </SettingRow>
+          <SettingRow
+            title='블로그'
+            description='다른 유저들에게 보여질 블로그 주소를 등록하는 곳입니다.'
+          >
+            <SettingInput
+              name='blog_url'
+              value={inputs.short_word}
+              onChange={onChange}
+              placeholder='블로그 주소를 입력하세요.'
+              fullWidth
+            />
+          </SettingRow>
+          <SettingRow
+            title='Github'
+            description='다른 유저들에게 보여질 Github 계정을 등록하는 곳입니다.'
+          >
+            <SettingInput
+              name='short_word'
+              value={inputs.short_word}
+              onChange={onChange}
+              placeholder='Github 계정을 입력하세요.'
+              fullWidth
+            />
+          </SettingRow>
+          <div className='button-wrapper'>
+            <Button color='green'>프로필 수정</Button>
           </div>
-        </div>
-        <div className='image'>
-          <img src='img/profile.jpg' alt='profile' />
-        </div>
-      </Block>
-      <BottomBlock>
-        <div className='box'>
-          <div className='no'>
-            <div>no.{user?.no}</div>
-            <SettingSocialButton />
-          </div>
-          <div className='short-word'>
-            <span>
-              {user?.short_word ? user?.short_word : '자기소개를 등록해보세요!'}
-            </span>
-          </div>
-        </div>
-      </BottomBlock>
-    </>
+        </form>
+      </div>
+    </Section>
   );
 }
 
-const Block = styled.section`
+const Section = styled.section`
   display: flex;
-  height: 8rem;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-
-  .title {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    height: 100%;
-
-    .name {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .buttons {
-      display: flex;
-
-      button:nth-child(1) {
-        margin-right: 1rem;
-      }
-    }
-  }
 
   .image {
+    padding-left: 4rem;
+    padding-right: 4rem;
+    display: flex;
+    flex-direction: column;
+
     img {
       display: block;
       border-radius: 50%;
@@ -85,45 +89,14 @@ const Block = styled.section`
       object-fit: cover;
     }
   }
-`;
 
-const BottomBlock = styled.section`
-  font-weight: bold;
-  margin-top: 3rem;
-  height: 8rem;
+  .info {
+    flex: auto;
+    box-sizing: border-box;
+  }
 
-  .box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    background: ${palette.gray8};
-    border-radius: 0.625rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-
-    .no {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      font-size: 2rem;
-
-      svg {
-        cursor: pointer;
-        :nth-child(1) {
-          margin-right: 1rem;
-        }
-      }
-    }
-
-    .short-word {
-      background: ${palette.gray7};
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
+  .button-wrapper {
+    text-align: right;
   }
 `;
 
