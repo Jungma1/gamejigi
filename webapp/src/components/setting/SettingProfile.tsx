@@ -12,18 +12,26 @@ function SettingProfile() {
 
   return (
     <>
-      <TopBlock>
+      <Block>
         <div className='title'>
           <div className='name'>{user?.username}</div>
           <div className='buttons'>
-            <Button color='green'>블로그 이동</Button>
+            {edit ? (
+              <Button color='green' effect>
+                정보 수정하기
+              </Button>
+            ) : (
+              <Button color='green' onClick={() => onToggle()}>
+                정보 수정하기
+              </Button>
+            )}
             <Button color='gray'>쪽지</Button>
           </div>
         </div>
         <div className='image'>
           <img src='img/profile.jpg' alt='profile' />
         </div>
-      </TopBlock>
+      </Block>
       <BottomBlock>
         <div className='box'>
           <div className='no'>
@@ -41,7 +49,7 @@ function SettingProfile() {
   );
 }
 
-const TopBlock = styled.section`
+const Block = styled.section`
   display: flex;
   height: 8rem;
   justify-content: space-between;

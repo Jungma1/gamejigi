@@ -10,6 +10,7 @@ interface ButtonProps
     HTMLButtonElement
   > {
   color: ButtonColorsType;
+  effect?: boolean;
 }
 
 function Button({ children, ...rest }: ButtonProps) {
