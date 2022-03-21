@@ -17,7 +17,7 @@ function SettingProfile() {
         <form>
           <SettingRow
             title='이름'
-            description='다른 유저들에게 보여질 이름을 등록하는 곳입니다.'
+            description='다른 사용자들에게 보여질 이름을 등록하는 곳입니다.'
           >
             <SettingInput
               name='username'
@@ -41,7 +41,7 @@ function SettingProfile() {
           </SettingRow>
           <SettingRow
             title='블로그'
-            description='다른 유저들에게 보여질 블로그 주소를 등록하는 곳입니다.'
+            description='다른 사용자들에게 보여질 블로그 주소를 등록하는 곳입니다.'
           >
             <SettingInput
               name='blog_url'
@@ -53,7 +53,7 @@ function SettingProfile() {
           </SettingRow>
           <SettingRow
             title='Github'
-            description='다른 유저들에게 보여질 Github 계정을 등록하는 곳입니다.'
+            description='다른 사용자들에게 보여질 Github 계정을 등록하는 곳입니다.'
           >
             <SettingInput
               name='short_word'

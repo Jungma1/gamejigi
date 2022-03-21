@@ -84,4 +84,23 @@ export class AuthController {
 
     return res.clearCookie('access_token').clearCookie('refresh_token').send();
   }
+
+  /**
+   * Get /api/auth/test
+   */
+  @Get('test')
+  async getTestToken(@Res() res: Response) {
+    const { accessToken, refreshToken } = await this.jwtAuthService.testToken();
+
+    res.cookie('access_token', accessToken, {
+      httpOnly: true,
+      maxAge: 60 * 60 * 1000,
+    });
+    res.cookie('refresh_token', refreshToken, {
+      httpOnly: true,
+      maxAge: 60 * 60 * 1000 * 24 * 14,
+    });
+
+    return res.send();
+  }
 }

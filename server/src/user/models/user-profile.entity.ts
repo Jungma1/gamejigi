@@ -29,6 +29,12 @@ export class UserProfile {
   @Column({ length: 255, nullable: true })
   thumbnail!: string;
 
+  @Column({ nullable: true })
+  blog_url!: string;
+
+  @Column({ nullable: true })
+  github_name!: string;
+
   @Column('timestamptz')
   @CreateDateColumn()
   created_at!: Date;

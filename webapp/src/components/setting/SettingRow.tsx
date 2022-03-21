@@ -25,6 +25,7 @@ const Block = styled.div`
 
   h3 {
     font-size: 1.125rem;
+    margin-bottom: 0.125rem;
   }
 
   .description {
