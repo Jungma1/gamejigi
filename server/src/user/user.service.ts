@@ -1,14 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
-import { UserRepository } from '../entity/user.repository';
+import { UserRepository } from '../repository/user.repository';
 import * as bcrypt from 'bcrypt';
-import { UserProfileRepository } from '../entity/user-profile.repository';
+import { UserProfileRepository } from '../repository/user-profile.repository';
+import { AdminUserRepository } from 'src/repository/admin-user.repository';
+import {
+  ROLE_ADMIN,
+  ROLE_MEMBER,
+} from 'src/auth/roles/decorator/roles.decorator';
+import { MemberUserRepository } from 'src/repository/member-user.repository';
 
 @Injectable()
 export class UserService {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly userProfileRepository: UserProfileRepository,
+    private readonly adminUserRepository: AdminUserRepository,
+    private readonly memberUserRepository: MemberUserRepository,
   ) {}
 
   async create(user: UserDto) {
@@ -27,6 +35,10 @@ export class UserService {
     await this.userProfileRepository.save(userProfile);
 
     return createUser;
+  }
+
+  async findOneFirst() {
+    return this.userProfileRepository.findOne();
   }
 
   async findOneProfile(userId: string) {
@@ -68,5 +80,24 @@ export class UserService {
 
   async removeHashedRefreshToken(id: string) {
     return this.userRepository.update({ id }, { hashed_refresh_token: null });
+  }
+
+  async isRolesMatched(userId: string, roles: string[]) {
+    for (const index in roles) {
+      switch (roles[index]) {
+        case ROLE_ADMIN:
+          if (!(await this.adminUserRepository.findOne({ fk_user_id: userId })))
+            return false;
+          break;
+        case ROLE_MEMBER:
+          if (
+            !(await this.memberUserRepository.findOne({ fk_user_id: userId }))
+          )
+            return false;
+          break;
+      }
+    }
+
+    return true;
   }
 }

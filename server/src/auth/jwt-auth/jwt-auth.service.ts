@@ -76,12 +76,13 @@ export class JwtAuthService {
   }
 
   async testToken() {
+    const user = await this.userService.findOneFirst();
     const accessToken = this.jwtService.sign({
-      id: '8487ffb5-7294-46bb-b3aa-04e15c2e8f61',
+      id: user.fk_user_id,
     });
     const refreshToken = this.jwtService.sign(
       {
-        id: '8487ffb5-7294-46bb-b3aa-04e15c2e8f61',
+        id: user.fk_user_id,
       },
       {
         expiresIn: this.configService.get<string>('REFRESH_TOKEN_EXPIRES_IN'),

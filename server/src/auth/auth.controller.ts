@@ -7,6 +7,8 @@ import { JwtAuthGuard } from './jwt-auth/guard/jwt-auth.guard';
 import { ConfigService } from '@nestjs/config';
 import { UserProfile } from 'src/entity/user-profile.entity';
 import { UserService } from 'src/user/user.service';
+import { Roles, ROLE_ADMIN } from './roles/decorator/roles.decorator';
+import { RolesGuard } from './roles/guard/roles.guard';
 
 @Controller('api/auth')
 export class AuthController {
@@ -106,5 +108,13 @@ export class AuthController {
     });
 
     return res.send();
+  }
+
+  @Get('role')
+  @Roles(ROLE_ADMIN)
+  @UseGuards(RolesGuard)
+  @UseGuards(JwtAuthGuard)
+  async getRoleGuardTest(@Req() req: Request, @Res() res: Response) {
+    return res.send(req.user);
   }
 }

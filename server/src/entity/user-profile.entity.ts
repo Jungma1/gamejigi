@@ -20,9 +20,6 @@ export class UserProfile {
   @Column({ default: 0 })
   no!: number;
 
-  @Column({ default: false })
-  rank!: boolean;
-
   @Column({ length: 255 })
   display_name!: string;
 

@@ -1,11 +1,15 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
+import { UserService } from 'src/user/user.service';
 import { ROLES_KEY } from '../decorator/roles.decorator';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
-  constructor(private readonly reflector: Reflector) {}
+  constructor(
+    private readonly reflector: Reflector,
+    private readonly userService: UserService,
+  ) {}
 
   canActivate(
     context: ExecutionContext,
@@ -19,8 +23,10 @@ export class RolesGuard implements CanActivate {
       return true;
     }
 
-    const { user } = context.switchToHttp().getRequest();
+    const {
+      user: { fk_user_id },
+    } = context.switchToHttp().getRequest();
 
-    return roles.some((role) => role === user.role);
+    return this.userService.isRolesMatched(fk_user_id, roles);
   }
 }
