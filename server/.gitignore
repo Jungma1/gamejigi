@@ -5,7 +5,7 @@
 
 # typeorm
 ormconfig.json
-ormconfig*.json
+# ormconfig*.json
 
 # User-specific stuff:
 .idea/**/workspace.xml

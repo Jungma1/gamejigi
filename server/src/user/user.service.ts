@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
-import { UserRepository } from './models/user.repository';
+import { UserRepository } from '../entity/user.repository';
 import * as bcrypt from 'bcrypt';
-import { UserProfileRepository } from './models/user-profile.repository';
+import { UserProfileRepository } from '../entity/user-profile.repository';
 
 @Injectable()
 export class UserService {
@@ -12,13 +12,16 @@ export class UserService {
   ) {}
 
   async create(user: UserDto) {
+    const { thumbnail, ...newUser } = user;
+
     // create user
-    const createUser = this.userRepository.create(user);
+    const createUser = this.userRepository.create(newUser);
     await this.userRepository.save(createUser);
 
     // create profile
     const userProfile = this.userProfileRepository.create({
       display_name: createUser.username,
+      thumbnail: user.thumbnail,
       fk_user_id: createUser.id,
     });
     await this.userProfileRepository.save(userProfile);

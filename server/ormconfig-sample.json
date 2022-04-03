@@ -1,0 +1,10 @@
+{
+  "type": "mariadb",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "",
+  "database": "gamejigi",
+  "entities": ["dist/entity/**/*.entity.{ts, js}"],
+  "synchronize": true
+}

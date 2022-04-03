@@ -42,7 +42,7 @@ const Block = styled.aside`
   width: 6rem;
   z-index: 0;
 
-  ${media.medium} {
+  ${media.small} {
     display: none;
   }
 `;

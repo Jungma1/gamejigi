@@ -6,15 +6,15 @@ import SettingInput from './SettingInput';
 import SettingRow from './SettingRow';
 
 function SettingProfile() {
-  const { inputs, onChange } = useSetting();
+  const { inputs, onChange, onSubmit } = useSetting();
 
   return (
     <Section>
       <div className='image'>
-        <img src='img/profile.jpg' alt='profile' />
+        <img src={inputs.thumbnail} alt='profile' />
       </div>
       <div className='info'>
-        <form>
+        <form onSubmit={onSubmit}>
           <SettingRow
             title='이름'
             description='다른 사용자들에게 보여질 이름을 등록하는 곳입니다.'
@@ -45,7 +45,7 @@ function SettingProfile() {
           >
             <SettingInput
               name='blog_url'
-              value={inputs.short_word}
+              value={inputs.blog_url}
               onChange={onChange}
               placeholder='블로그 주소를 입력하세요.'
               fullWidth
@@ -53,13 +53,13 @@ function SettingProfile() {
           </SettingRow>
           <SettingRow
             title='Github'
-            description='다른 사용자들에게 보여질 Github 계정을 등록하는 곳입니다.'
+            description='다른 사용자들에게 보여질 Github 주소를 등록하는 곳입니다.'
           >
             <SettingInput
-              name='short_word'
-              value={inputs.short_word}
+              name='github_url'
+              value={inputs.github_url}
               onChange={onChange}
-              placeholder='Github 계정을 입력하세요.'
+              placeholder='Github 주소를 입력하세요.'
               fullWidth
             />
           </SettingRow>

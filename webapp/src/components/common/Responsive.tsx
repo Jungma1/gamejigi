@@ -20,12 +20,6 @@ export const ResponsiveTemplate = styled.div`
   border-right: 2px solid rgba(255, 255, 255, 0.5);
 
   ${media.xlarge} {
-    width: 1024px;
-  }
-  ${media.medium} {
-    width: 768px;
-  }
-  ${media.small} {
     width: 100%;
   }
 `;

@@ -25,10 +25,6 @@ export default function useAuth() {
     navigate('/');
   };
 
-  const handleFormSubmitUser = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
@@ -51,6 +47,5 @@ export default function useAuth() {
     modalVisible,
     handleChangeModalVisible,
     handleClickLogout,
-    handleFormSubmitUser,
   };
 }

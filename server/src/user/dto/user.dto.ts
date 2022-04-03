@@ -14,5 +14,5 @@ export class UserDto {
   social_id: string;
 
   @IsString()
-  role: string;
+  thumbnail: string;
 }

@@ -5,7 +5,7 @@ import { Request, Response } from 'express';
 import { UserDto } from 'src/user/dto/user.dto';
 import { JwtAuthGuard } from './jwt-auth/guard/jwt-auth.guard';
 import { ConfigService } from '@nestjs/config';
-import { UserProfile } from 'src/user/models/user-profile.entity';
+import { UserProfile } from 'src/entity/user-profile.entity';
 import { UserService } from 'src/user/user.service';
 
 @Controller('api/auth')
@@ -62,6 +62,8 @@ export class AuthController {
       display_name: username,
       thumbnail,
       short_word,
+      blog_url,
+      github_url,
     } = req.user as UserProfile;
 
     return res.status(200).json({
@@ -69,6 +71,8 @@ export class AuthController {
       username,
       thumbnail,
       short_word,
+      blog_url,
+      github_url,
     });
   }
 

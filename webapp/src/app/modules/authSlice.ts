@@ -3,8 +3,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface User {
   no: number;
   username: string;
-  thumbnail: string;
+  thumbnail?: string;
   short_word: string;
+  blog_url: string;
+  github_url: string;
 }
 
 export interface AuthState {
@@ -44,6 +46,19 @@ export const authSlice = createSlice({
     setModalVisible: (state, action: PayloadAction<boolean>) => {
       state.modalVisible = action.payload;
     },
+    updateUser: (state, action: PayloadAction<User>) => {
+      state.isLoading = true;
+    },
+    updateUserSucceed: (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+      state.isError = null;
+      state.isLoading = false;
+    },
+    updateUserError: (state, action) => {
+      state.user = null;
+      state.isError = action.payload;
+      state.isLoading = false;
+    },
   },
 });
 
@@ -55,6 +70,9 @@ export const {
   setUserSucceed,
   setUserError,
   setModalVisible,
+  updateUser,
+  updateUserSucceed,
+  updateUserError,
 } = actions;
 
 export default authReducer;

@@ -25,9 +25,6 @@ export class User {
   @Column()
   social_id!: string;
 
-  @Column()
-  role!: string;
-
   @Column({ nullable: true })
   hashed_refresh_token!: string;
 
