@@ -21,7 +21,7 @@ function SettingProfile() {
           >
             <SettingInput
               name='username'
-              value={inputs.username}
+              value={inputs.displayName}
               onChange={onChange}
               placeholder='이름을 입력하세요.'
               fullWidth
@@ -33,7 +33,7 @@ function SettingProfile() {
           >
             <SettingInput
               name='short_word'
-              value={inputs.short_word}
+              value={inputs.shortWord}
               onChange={onChange}
               placeholder='자기소개를 입력하세요.'
               fullWidth
@@ -45,7 +45,7 @@ function SettingProfile() {
           >
             <SettingInput
               name='blog_url'
-              value={inputs.blog_url}
+              value={inputs.blogUrl}
               onChange={onChange}
               placeholder='블로그 주소를 입력하세요.'
               fullWidth
@@ -57,7 +57,7 @@ function SettingProfile() {
           >
             <SettingInput
               name='github_url'
-              value={inputs.github_url}
+              value={inputs.githubUrl}
               onChange={onChange}
               placeholder='Github 주소를 입력하세요.'
               fullWidth

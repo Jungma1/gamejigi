@@ -22,19 +22,19 @@ export class User {
   @Column()
   provider!: string;
 
-  @Column()
-  social_id!: string;
+  @Column({ name: 'social_id' })
+  socialId!: string;
 
-  @Column({ nullable: true })
-  hashed_refresh_token!: string;
-
-  @Column('timestamptz')
-  @CreateDateColumn()
-  created_at!: Date;
+  @Column({ name: 'hashed_refresh_token', nullable: true })
+  hashedRefreshToken!: string;
 
   @Column('timestamptz')
-  @UpdateDateColumn()
-  updated_at!: Date;
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt!: Date;
+
+  @Column('timestamptz')
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt!: Date;
 
   @OneToOne(() => UserProfile, (profile) => profile.user)
   profile!: UserProfile;

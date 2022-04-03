@@ -15,10 +15,10 @@ export class Role {
   name!: string;
 
   @Column('timestamptz')
-  @CreateDateColumn()
-  created_at!: Date;
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt!: Date;
 
   @Column('timestamptz')
-  @UpdateDateColumn()
-  updated_at!: Date;
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt!: Date;
 }

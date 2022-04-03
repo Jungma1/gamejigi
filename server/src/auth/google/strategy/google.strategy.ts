@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { Profile, Strategy } from 'passport-google-oauth20';
+import { UserDto } from 'src/user/dto/user.dto';
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
@@ -21,8 +22,8 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       email: emails[0].value,
       username: displayName,
       provider: provider,
-      social_id: id,
-      thumbnail: photos[0].value,
-    };
+      socialId: id,
+      thumbnail: photos[0].value ? photos[0].value : '',
+    } as UserDto;
   }
 }

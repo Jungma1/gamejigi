@@ -7,8 +7,6 @@ import { JwtAuthGuard } from './jwt-auth/guard/jwt-auth.guard';
 import { ConfigService } from '@nestjs/config';
 import { UserProfile } from 'src/entity/user-profile.entity';
 import { UserService } from 'src/user/user.service';
-import { Roles, ROLE_ADMIN } from './roles/decorator/roles.decorator';
-import { RolesGuard } from './roles/guard/roles.guard';
 
 @Controller('api/auth')
 export class AuthController {
@@ -35,9 +33,9 @@ export class AuthController {
   @Get('google/callback')
   @UseGuards(GoogleGuard)
   async googleAuthCallback(@Req() req: Request, @Res() res: Response) {
-    const requestUser = req.user as UserDto;
+    const user = req.user as UserDto;
     const { accessToken, refreshToken } = await this.jwtAuthService.register(
-      requestUser,
+      user,
     );
 
     res.cookie('access_token', accessToken, {
@@ -59,22 +57,16 @@ export class AuthController {
   @Get('check')
   @UseGuards(JwtAuthGuard)
   async checkUser(@Req() req: Request, @Res() res: Response) {
-    const {
-      no,
-      display_name: username,
-      thumbnail,
-      short_word,
-      blog_url,
-      github_url,
-    } = req.user as UserProfile;
+    const { no, displayName, thumbnail, shortWord, blogUrl, githubUrl } =
+      req.user as UserProfile;
 
     return res.status(200).json({
       no,
-      username,
+      displayName,
+      shortWord,
       thumbnail,
-      short_word,
-      blog_url,
-      github_url,
+      blogUrl,
+      githubUrl,
     });
   }
 
@@ -108,13 +100,5 @@ export class AuthController {
     });
 
     return res.send();
-  }
-
-  @Get('role')
-  @Roles(ROLE_ADMIN)
-  @UseGuards(RolesGuard)
-  @UseGuards(JwtAuthGuard)
-  async getRoleGuardTest(@Req() req: Request, @Res() res: Response) {
-    return res.send(req.user);
   }
 }

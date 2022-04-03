@@ -20,28 +20,28 @@ export class UserProfile {
   @Column({ default: 0 })
   no!: number;
 
-  @Column({ length: 255 })
-  display_name!: string;
+  @Column({ name: 'display_name', length: 255 })
+  displayName!: string;
 
-  @Column({ length: 255, default: '' })
-  short_word!: string;
+  @Column({ name: 'short_word', length: 255, default: '' })
+  shortWord!: string;
 
   @Column({ length: 255, default: '' })
   thumbnail!: string;
 
-  @Column({ length: 255, default: '' })
-  blog_url!: string;
+  @Column({ name: 'blog_url', length: 255, default: '' })
+  blogUrl!: string;
 
-  @Column({ length: 255, default: '' })
-  github_url!: string;
-
-  @Column('timestamptz')
-  @CreateDateColumn()
-  created_at!: Date;
+  @Column({ name: 'github_url', length: 255, default: '' })
+  githubUrl!: string;
 
   @Column('timestamptz')
-  @UpdateDateColumn()
-  updated_at!: Date;
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt!: Date;
+
+  @Column('timestamptz')
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt!: Date;
 
   @OneToOne(() => User, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'fk_user_id' })

@@ -18,12 +18,12 @@ export class AdminUser {
   fk_user_id!: string;
 
   @Column('timestamptz')
-  @CreateDateColumn()
-  created_at!: Date;
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt!: Date;
 
   @Column('timestamptz')
-  @UpdateDateColumn()
-  updated_at!: Date;
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt!: Date;
 
   @ManyToOne(() => User, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'fk_user_id' })

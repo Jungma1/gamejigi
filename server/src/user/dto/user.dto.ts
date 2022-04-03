@@ -11,7 +11,7 @@ export class UserDto {
   provider: string;
 
   @IsString()
-  social_id: string;
+  socialId: string;
 
   @IsString()
   thumbnail: string;

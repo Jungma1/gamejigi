@@ -5,22 +5,22 @@ import { updateUser, User } from '../app/modules/authSlice';
 export default function useSetting() {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
-  const initialInputValues = user
+  const initialInputValues: User = user
     ? {
         no: user.no,
-        username: user.username,
+        displayName: user.displayName,
         thumbnail: user.thumbnail,
-        short_word: user.short_word,
-        blog_url: user.blog_url,
-        github_url: user.github_url,
+        shortWord: user.shortWord,
+        blogUrl: user.blogUrl,
+        githubUrl: user.githubUrl,
       }
     : {
         no: 0,
-        username: '',
+        displayName: '',
         thumbnail: '',
-        short_word: '',
-        blog_url: '',
-        github_url: '',
+        shortWord: '',
+        blogUrl: '',
+        githubUrl: '',
       };
 
   const [inputs, setInputs] = useState<User>(initialInputValues);

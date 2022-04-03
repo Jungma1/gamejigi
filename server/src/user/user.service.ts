@@ -28,7 +28,7 @@ export class UserService {
 
     // create profile
     const userProfile = this.userProfileRepository.create({
-      display_name: createUser.username,
+      displayName: createUser.username,
       thumbnail: user.thumbnail,
       fk_user_id: createUser.id,
     });
@@ -37,7 +37,7 @@ export class UserService {
     return createUser;
   }
 
-  async findOneFirst() {
+  async findOneFirstProfile() {
     return this.userProfileRepository.findOne();
   }
 
@@ -50,7 +50,7 @@ export class UserService {
   async findOneByProviderAndSocialId(user: UserDto) {
     return this.userRepository.findOne({
       provider: user.provider,
-      social_id: user.social_id,
+      socialId: user.socialId,
     });
   }
 
@@ -65,21 +65,17 @@ export class UserService {
     const salt = await bcrypt.genSalt();
     const hashedRefreshToken = await bcrypt.hash(refreshToken, salt);
 
-    return this.userRepository.update(
-      { id },
-      { hashed_refresh_token: hashedRefreshToken },
-    );
+    return this.userRepository.update({ id }, { hashedRefreshToken });
   }
 
   async getHashedRefreshToken(id: string) {
-    const { hashed_refresh_token: hashedRefreshToken } =
-      await this.userRepository.findOne({ id });
+    const { hashedRefreshToken } = await this.userRepository.findOne({ id });
 
     return hashedRefreshToken;
   }
 
   async removeHashedRefreshToken(id: string) {
-    return this.userRepository.update({ id }, { hashed_refresh_token: null });
+    return this.userRepository.update({ id }, { hashedRefreshToken: null });
   }
 
   async isRolesMatched(userId: string, roles: string[]) {

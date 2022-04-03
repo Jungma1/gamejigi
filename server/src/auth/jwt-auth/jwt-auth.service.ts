@@ -76,7 +76,7 @@ export class JwtAuthService {
   }
 
   async testToken() {
-    const user = await this.userService.findOneFirst();
+    const user = await this.userService.findOneFirstProfile();
     const accessToken = this.jwtService.sign({
       id: user.fk_user_id,
     });
