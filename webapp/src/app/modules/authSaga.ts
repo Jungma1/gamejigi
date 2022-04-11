@@ -1,6 +1,14 @@
 import client from '../../lib/api/client';
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { setUser, setUserError, setUserSucceed, updateUser, updateUserError, User } from './authSlice';
+import {
+  setUser,
+  setUserError,
+  setUserSucceed,
+  updateUser,
+  updateUserError,
+  updateUserSucceed,
+  User,
+} from './authSlice';
 import userStorage from '../../lib/userStorage';
 import { PayloadAction } from '@reduxjs/toolkit';
 
@@ -22,16 +30,18 @@ export function getUserErrorSaga() {
   }
 }
 
-export function* postUpdateUserSaga(action: PayloadAction<User>): Generator {
+export function* patchUserSaga(action: PayloadAction<User>): Generator {
   try {
-    console.log(action.payload); // api post 호출
+    const result: any = yield call(client.patch, '/api/users', action.payload);
+    userStorage.set(result.data);
+    yield put(updateUserSucceed(result.data));
   } catch (err) {
-    yield put(updateUserError(err))
+    yield put(updateUserError(err));
   }
 }
 
 export default function* authSaga() {
   yield takeLatest(setUser, getUserSaga);
   yield takeLatest(setUserError, getUserErrorSaga);
-  yield takeLatest(updateUser, postUpdateUserSaga);
+  yield takeLatest(updateUser, patchUserSaga);
 }

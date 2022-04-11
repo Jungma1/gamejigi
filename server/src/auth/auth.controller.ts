@@ -7,6 +7,7 @@ import { JwtAuthGuard } from './jwt-auth/guard/jwt-auth.guard';
 import { ConfigService } from '@nestjs/config';
 import { UserProfile } from 'src/entity/user-profile.entity';
 import { UserService } from 'src/user/user.service';
+import { User } from 'src/entity/user.entity';
 
 @Controller('api/auth')
 export class AuthController {
@@ -57,8 +58,9 @@ export class AuthController {
   @Get('check')
   @UseGuards(JwtAuthGuard)
   async checkUser(@Req() req: Request, @Res() res: Response) {
-    const { no, displayName, thumbnail, shortWord, blogUrl, githubUrl } =
-      req.user as UserProfile;
+    const { id } = req.user as User;
+    const { no, displayName, shortWord, thumbnail, blogUrl, githubUrl } =
+      await this.userService.findOneProfile(id);
 
     return res.status(200).json({
       no,
@@ -96,7 +98,7 @@ export class AuthController {
     });
     res.cookie('refresh_token', refreshToken, {
       httpOnly: true,
-      maxAge: 60 * 60 * 1000 * 24 * 14,
+      maxAge: 60 * 60 * 1000 * 24 * 30,
     });
 
     return res.send();

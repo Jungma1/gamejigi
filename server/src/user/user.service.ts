@@ -9,6 +9,7 @@ import {
   ROLE_MEMBER,
 } from 'src/auth/roles/decorator/roles.decorator';
 import { MemberUserRepository } from 'src/repository/member-user.repository';
+import { UserProfileUpdateDto } from './dto/user-profile-update.dto';
 
 @Injectable()
 export class UserService {
@@ -37,14 +38,27 @@ export class UserService {
     return createUser;
   }
 
-  async findOneFirstProfile() {
-    return this.userProfileRepository.findOne();
+  async update(userId: string, profile: UserProfileUpdateDto) {
+    await this.userProfileRepository.update({ fk_user_id: userId }, profile);
+    const user = await this.userProfileRepository.findOne({
+      fk_user_id: userId,
+    });
+
+    return user;
+  }
+
+  async findOne(userId: string) {
+    return this.userRepository.findOne(userId);
   }
 
   async findOneProfile(userId: string) {
     return this.userProfileRepository.findOne({
       fk_user_id: userId,
     });
+  }
+
+  async findOneFirstProfile() {
+    return this.userProfileRepository.findOne();
   }
 
   async findOneByProviderAndSocialId(user: UserDto) {

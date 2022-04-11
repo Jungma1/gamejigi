@@ -20,7 +20,7 @@ function SettingProfile() {
             description='다른 사용자들에게 보여질 이름을 등록하는 곳입니다.'
           >
             <SettingInput
-              name='username'
+              name='displayName'
               value={inputs.displayName}
               onChange={onChange}
               placeholder='이름을 입력하세요.'
@@ -32,7 +32,7 @@ function SettingProfile() {
             description='자신의 한 줄 소개를 등록하는 곳입니다.'
           >
             <SettingInput
-              name='short_word'
+              name='shortWord'
               value={inputs.shortWord}
               onChange={onChange}
               placeholder='자기소개를 입력하세요.'
@@ -44,7 +44,7 @@ function SettingProfile() {
             description='다른 사용자들에게 보여질 블로그 주소를 등록하는 곳입니다.'
           >
             <SettingInput
-              name='blog_url'
+              name='blogUrl'
               value={inputs.blogUrl}
               onChange={onChange}
               placeholder='블로그 주소를 입력하세요.'
@@ -56,7 +56,7 @@ function SettingProfile() {
             description='다른 사용자들에게 보여질 Github 주소를 등록하는 곳입니다.'
           >
             <SettingInput
-              name='github_url'
+              name='githubUrl'
               value={inputs.githubUrl}
               onChange={onChange}
               placeholder='Github 주소를 입력하세요.'

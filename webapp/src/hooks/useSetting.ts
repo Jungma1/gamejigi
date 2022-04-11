@@ -5,24 +5,7 @@ import { updateUser, User } from '../app/modules/authSlice';
 export default function useSetting() {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
-  const initialInputValues: User = user
-    ? {
-        no: user.no,
-        displayName: user.displayName,
-        thumbnail: user.thumbnail,
-        shortWord: user.shortWord,
-        blogUrl: user.blogUrl,
-        githubUrl: user.githubUrl,
-      }
-    : {
-        no: 0,
-        displayName: '',
-        thumbnail: '',
-        shortWord: '',
-        blogUrl: '',
-        githubUrl: '',
-      };
-
+  const initialInputValues: User = user!;
   const [inputs, setInputs] = useState<User>(initialInputValues);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
