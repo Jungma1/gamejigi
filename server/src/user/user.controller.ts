@@ -13,14 +13,7 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   async patchUser(@Req() req: Request, @Body() body: UserProfileUpdateDto) {
     const { id } = req.user as User;
-    const {
-      id: test,
-      fk_user_id,
-      createdAt,
-      updatedAt,
-      ...user
-    } = await this.userService.update(id, body);
-
+    const user = await this.userService.update(id, body);
     return user;
   }
 }

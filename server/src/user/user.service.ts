@@ -40,9 +40,21 @@ export class UserService {
 
   async update(userId: string, profile: UserProfileUpdateDto) {
     await this.userProfileRepository.update({ fk_user_id: userId }, profile);
-    const user = await this.userProfileRepository.findOne({
-      fk_user_id: userId,
-    });
+    const user = await this.userProfileRepository.findOne(
+      {
+        fk_user_id: userId,
+      },
+      {
+        select: [
+          'no',
+          'displayName',
+          'shortWord',
+          'thumbnail',
+          'blogUrl',
+          'githubUrl',
+        ],
+      },
+    );
 
     return user;
   }
