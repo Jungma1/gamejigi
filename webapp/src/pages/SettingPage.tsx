@@ -4,7 +4,7 @@ import LeftSidebar from '../components/common/LeftSidebar';
 import MainTemplate from '../components/common/MainTemplate';
 import Responsive from '../components/common/Responsive';
 import SettingProfile from '../components/setting/SettingProfile';
-import useAuth from '../hooks/useAuth';
+import useAuth from '../components/auth/hooks/useAuth';
 import media from '../lib/styles/media';
 
 function SettingPage() {

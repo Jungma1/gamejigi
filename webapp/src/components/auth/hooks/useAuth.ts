@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { setModalVisible, setPayloadUser } from '../app/modules/authSlice';
-import client from '../lib/api/client';
-import userStorage from '../lib/userStorage';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { setModalVisible, setPayloadUser } from '../../../app/modules/authSlice';
+import client from '../../../lib/api/client';
+import userStorage from '../../../lib/userStorage';
 
 export default function useAuth() {
   const dispatch = useAppDispatch();

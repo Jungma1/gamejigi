@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import useSetting from '../../hooks/useSetting';
+import useSetting from './hooks/useSetting';
 import Button from '../common/Button';
 import SettingInput from './SettingInput';
 import SettingRow from './SettingRow';

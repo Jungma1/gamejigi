@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { updateUser, User } from '../app/modules/authSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { updateUser, User } from '../../../app/modules/authSlice';
 
 export default function useSetting() {
   const dispatch = useAppDispatch();

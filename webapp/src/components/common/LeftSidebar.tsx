@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../auth/hooks/useAuth';
 import media from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import {
