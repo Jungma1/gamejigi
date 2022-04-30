@@ -1,1 +1,1 @@
-# 🎮 Gamejigi - web
+# 🎮 Gamejigi
