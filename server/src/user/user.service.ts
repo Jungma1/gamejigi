@@ -20,7 +20,7 @@ export class UserService {
     private readonly memberUserRepository: MemberUserRepository,
   ) {}
 
-  async create(user: UserDto) {
+  async createUser(user: UserDto) {
     const { thumbnail, ...newUser } = user;
 
     // create user
@@ -38,23 +38,11 @@ export class UserService {
     return createUser;
   }
 
-  async update(userId: string, profile: UserProfileUpdateDto) {
+  async updateProfile(userId: string, profile: UserProfileUpdateDto) {
     await this.userProfileRepository.update({ fk_user_id: userId }, profile);
-    const user = await this.userProfileRepository.findOne(
-      {
-        fk_user_id: userId,
-      },
-      {
-        select: [
-          'no',
-          'displayName',
-          'shortWord',
-          'thumbnail',
-          'blogUrl',
-          'githubUrl',
-        ],
-      },
-    );
+    const user = await this.userProfileRepository.findOne({
+      fk_user_id: userId,
+    });
 
     return user;
   }

@@ -38,7 +38,7 @@ export class JwtAuthService {
     }
 
     // 사용자가 없을 경우
-    const saveUser = await this.userService.create(user);
+    const saveUser = await this.userService.createUser(user);
     const payload = {
       id: saveUser.id,
       sub: 'access_token',

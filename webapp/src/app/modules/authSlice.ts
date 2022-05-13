@@ -55,7 +55,6 @@ export const authSlice = createSlice({
       state.isLoading = false;
     },
     updateUserError: (state, action) => {
-      state.user = null;
       state.isError = action.payload;
       state.isLoading = false;
     },

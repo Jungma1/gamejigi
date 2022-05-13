@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
 
@@ -8,15 +8,17 @@ interface SettingInputProps
       React.InputHTMLAttributes<HTMLInputElement>,
       HTMLInputElement
     >,
-    'ref' | 'as' | 'onChange'
+    'ref' | 'as' | 'onChange' | 'register'
   > {
   fullWidth?: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function SettingInput(props: SettingInputProps) {
-  return <StyledInput {...props} />;
-}
+const SettingInput = forwardRef(function SettingInput(
+  props: SettingInputProps,
+  forwardRef: any
+) {
+  return <StyledInput {...props} ref={forwardRef} />;
+});
 
 const StyledInput = styled.input<{ fullWidth?: boolean }>`
   background: ${palette.gray8};
